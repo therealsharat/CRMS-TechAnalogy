@@ -1,0 +1,13 @@
+{%  extends "Dashboard/Navbar.html" %}
+<head>
+    <meta charset="UTF-8">
+    <title>Logout</title>
+</head>
+{% block content %}
+    <h2>You have successfully Logged Out</h2>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            <a href="{% url 'Login' %}">Log In Again</a>
+        </small>
+    </div>
+{% endblock content %}

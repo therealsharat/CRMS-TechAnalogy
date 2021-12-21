@@ -1,0 +1,80 @@
+html{min-height:100%;}
+body{
+	margin: 0;
+	font-family: sans-serif;
+	background: url(login_background.jpeg);
+	background-size :cover;
+	background-repeat:no-repeat;
+	background-position:center center;
+	background-attachment: fixed;
+
+
+
+}
+.box{
+	width=300px;
+	padding: 331px 80px;
+	top: 50%;
+	position: absolute;
+	left: 89%;
+	transform: translate(-50%,-50%);
+	background: rgba(250, 250, 250, 0.5);
+	text-align: center;
+}
+.box h1
+{
+	color: White;
+	text-transform: uppercase;
+	font-weight: 700;
+}
+
+.box input[type="text"],.box input[type="password"]
+{
+	border: 0;
+	background: none;
+	display: block;
+	margin: 20px auto;
+	text-align: center;
+	border: 3px  solid  #0367fd;
+	padding: 14px 10px;
+	width: 220px;
+	outline: none;
+	color: #fff;
+	border-radius: 24px;
+	transition: 0.25px;
+}
+
+.box input[type="submit"]{
+	border: 0;
+	background: #ffc400ec;
+	display: block;
+	margin: 20px auto;
+	text-align: center;
+	border: 3px  solid  #ffc400ec;
+	padding: 14px 35px;
+	outline: none;
+	color: #fff;
+	border-radius: 24px;
+	transition: 0.25px;
+	cursor: pointer;
+
+}
+::placeholder{
+	color: white;
+	opacity:1;
+}
+.switch{
+  position: relative;
+  display: inline-block;
+}
+
+::button {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
