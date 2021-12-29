@@ -1,48 +1,58 @@
 <html>
 <head>
+    <title> Home Page </title>
     <style>
 
         body{
             margin:0;
-            backdrop-filter: blur(5px);
-            background-attachment: fixed;
-            background-size: cover;
+
             font-family: Helvetica;
         }
 
         .topnav{
             overflow: hidden;
-            background-color: #1E90FF;
-            color: white;
-            padding: 14px 10px;
+            background-color: rgba(255,255,255,0.8);
         }
 
         .topnav img{
             float: left;
+            padding: 14px 30px;
         }
 
         .topnav a {
-            float: left;
-            color: white;
+            float: right;
+            color: #21618C;
             text-align: center;
-            padding: 10px 10px;
+            padding: 30px 30px;
             text-decoration: none;
             font-size: 17px;
-            width: 15%;
-            border-style: solid;
-            border-spacing: 15px;
         }
+
+        .topnav a:hover {
+            background-color: #ddd;
+            color: #21618C;
+        }
+
+        .topnav a.active {
+            background-color: #1E90FF;
+            color: white;
+        }
+
     </style>
 </head>
+
 <body>
+
 <div class="topnav">
-    <img src="/static/Dashboard/Navbar_Logo.png" width="100" height="50">
-    <a href="{% url 'Personal' %}">PERSONAL DETAILS</a>&nbsp;
-    <a href="{% url 'Leave' %}">LEAVE APPLICATION</a>
-    <a href="{% url 'Resignation' %}">RESIGNATION</a>
-    <a href="{% url 'Task' %}">TASK</a>
+    <img src="/static/Dashboard/biglogo.png" width="150" height="50">
     <a class="active" href="{% url 'Logout' %}">LOGOUT</a>
+    <a href="{% url 'Resignation' %}">RESIGNATION</a>
+    <a href="{% url 'Leave' %}">LEAVE APPLICATION</a>
+    <a href="{% url 'Task' %}">TASK</a>
+    <a href="{% url 'Personal' %}">PERSONAL DETAILS</a>&nbsp;
+
 </div>
+
 </body>
 
 <body>
