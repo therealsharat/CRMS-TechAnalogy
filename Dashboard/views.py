@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from Employee.models import Employee
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -9,6 +10,9 @@ def Dashboard(request):
 
 @login_required
 def Personal(request):
+    context = {
+        'employee':Employee.objects.all()
+    }
     return render(request, 'Dashboard/Personal.html')
 
 @login_required

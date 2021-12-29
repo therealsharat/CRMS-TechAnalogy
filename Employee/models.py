@@ -31,16 +31,21 @@ class Department(models.Model):
     department_name = models.CharField(max_length=125, blank=True)
     description = models.CharField(max_length=125, null=True, blank=True)
 
+    def __str__(self):
+        return f'{self.department_name} Department'
+
 
 class Role(models.Model):
     role_name = models.CharField(max_length=125, blank=True)
     description = models.CharField(max_length=125, null=True, blank=True)
 
+    def __str__(self):
+        return f'{self.role_name}'
 
 # EMPLOYEE MODEL
 
 class Employee(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     title = models.CharField(choices=Title, max_length=3, null=False, blank=False)
     gender = models.CharField(choices=Gender, max_length=6, null=False, blank=False)
     firstname = models.CharField('Firstname', max_length=125, null=False, blank=False)
@@ -55,3 +60,6 @@ class Employee(models.Model):
 
     created = models.DateTimeField(verbose_name='Created', auto_now_add=True, null=True)
     updated = models.DateTimeField(verbose_name='Updated', auto_now=True, null=True)
+
+    def __str__(self):
+        return f'{self.user} Profile'
