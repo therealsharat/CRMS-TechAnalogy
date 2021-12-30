@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import RegexValidator
 
 # Create your models here.
 
@@ -53,6 +54,10 @@ class Employee(models.Model):
 
     department = models.ManyToManyField(Department, verbose_name='Department')
     role = models.ManyToManyField(Role, verbose_name='Role')
+
+    phoneNumberRegex = RegexValidator(regex = r"^\+?1?\d{8,15}$")
+    phoneNumber = models.CharField(validators = [phoneNumberRegex], max_length = 16, unique = True, default='0123456789')
+    email = models.EmailField(max_length=124, default='abc@gmail.com')
 
     startdate = models.DateField('Employment Date', help_text='date of employment', blank=False, null=True)
     employeetype = models.CharField(choices=Employment_Type, max_length=15, blank=False, null=True)

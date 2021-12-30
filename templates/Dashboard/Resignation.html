@@ -1,10 +1,180 @@
 {%  extends "Dashboard/Navbar.html" %}
 <head>
     <meta charset="UTF-8">
-    <title>Resignation</title>
+    <title>Resignation Request</title>
 </head>
 {% block content %}
-    <body>
-    <h3>Welcome to the Resignation Page</h3>
-    </body>
+{% for i in employees %}
+{% if i.user == user %}
+<style>
+    .leftbar {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        position: absolute;
+        left: 0px;
+        width: 200px;
+        height: 100%;
+        background-color: rgba(30,144,255);
+        padding: 15px;
+        text-align: center;
+        color: white;
+    }
+
+    .leftbar img{
+        border-radius: 100%;
+    }
+
+    .rightbar {
+        position: absolute;
+        background-color:rgba(255,255,255);
+        left: 230px;
+        width: 100%;
+        height: 100%;
+        padding: 15px;
+        color: #21618C;
+    }
+
+    .rightbar h1{
+        letter-spacing: 5px;
+        font-weight: normal;
+        color: black;
+    }
+
+    .rightbar1{
+        position: absolute;
+        left: 0px;
+        padding: 15px;
+    }
+
+    .rightbar2{
+        position: absolute;
+        left: 0px;
+        padding: 15px;
+        top: 180px;
+        font-weight: normal;
+    }
+
+    textarea {
+        width: 500px;
+        height: 150px;
+        padding: 12px 20px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background-color: #f8f8f8;
+        font-size: 16px;
+        resize: none;
+        font-family: Helvetica;
+        color: 	#C0C0C0;
+    }
+
+    .rightbar3{
+        position: absolute;
+        left: 550px;
+        padding: 15px;
+        top: 180px;
+        font-weight: normal;
+    }
+
+    .rightbar4{
+        position: absolute;
+        left: 0px;
+        padding: 15px;
+        font-weight: normal;
+        top: 420px;
+    }
+
+    .submit{
+        position: absolute;
+        left: 1000px;
+        padding: 15px;
+        font-weight: normal;
+        top: 500px;
+    }
+
+    .cancel{
+        position: absolute;
+        left: 880px;
+        padding: 15px;
+        font-weight: normal;
+        top: 500px;
+    }
+
+    .submit input[type=submit] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .submit input[type=submit]:hover {
+        background-color: #45a049;
+    }
+
+    .cancel input[type=submit] {
+        background-color: white;
+        color: #4CAF50;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: 2px solid #4CAF50;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .cancel input[type=submit]:hover {
+        background-color: #45a049;
+        color: white;
+        border: none;
+    }
+
+</style>
+<body>
+<div class="leftbar">
+    <p>{{i.firstname}} {{i.lastname}}</p>
+    <img src="/static/Dashboard/user.jpeg" width="170" height="170">
+    <p>{{i.employeeid}}</p>
+</div>
+<div class="rightbar">
+    <h1>RESIGNATION REQUEST</h1>
+    <hr>
+    <div class="rightbar1">
+        <form>
+            <label for="Date">Proposed Termination Date:</label>
+            <input type="date" id="Date" name="Date">
+        </form>
+    </div>
+    <div class="rightbar2">
+        <form >
+            <label for="preason">Primary Reason</label><br><br>
+            <textarea>Primary Reason</textarea>
+        </form>
+    </div>
+    <div class="rightbar3">
+        <form >
+            <label for="sreason">Secondary Reason</label><br><br>
+            <textarea>Secondary Reason</textarea>
+        </form>
+    </div>
+    <div class="rightbar4">
+        <form >
+            <label for="myfile">Attachment:</label>
+            <input type="file" id="myfile" name="myfile" multiple><br><br>
+        </form>
+    </div>
+    <div class="submit">
+        <form >
+            <input type="submit" value="Submit"></form>
+        </form>
+    </div>
+    <div class="cancel">
+        <form >
+            <input type="submit" value="Cancel"></form>
+        </form>
+    </div>
+</div>
+</body>
+{% endif %}
+{% endfor %}
 {% endblock content %}

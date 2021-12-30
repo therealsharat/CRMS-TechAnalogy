@@ -4,7 +4,11 @@
     <title>Dashboard</title>
 </head>
 {% block content %}
-    <body>
-    <h3>Welcome {{user.username}}!</h3>
-    </body>
+{% for i in employees %}
+{% if i.user == user %}
+<body>
+<h3>Welcome {{i.firstname}}!</h3>
+</body>
+{% endif %}
+{% endfor %}
 {% endblock content %}

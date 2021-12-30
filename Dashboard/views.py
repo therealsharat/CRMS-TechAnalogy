@@ -7,7 +7,11 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def Dashboard(request):
-    return render(request, 'Dashboard/Dashboard.html')
+    employees = Employee.objects.all()
+    context = {
+        'employees': employees
+    }
+    return render(request, 'Dashboard/Dashboard.html', context)
 
 @login_required
 def Personal(request):
@@ -19,12 +23,24 @@ def Personal(request):
 
 @login_required
 def Leave(request):
-    return render(request, 'Dashboard/Leave.html')
+    employees = Employee.objects.all()
+    context = {
+        'employees': employees
+    }
+    return render(request, 'Dashboard/Leave.html', context)
 
 @login_required
 def Resignation(request):
-    return render(request, 'Dashboard/Resignation.html')
+    employees = Employee.objects.all()
+    context = {
+        'employees': employees
+    }
+    return render(request, 'Dashboard/Resignation.html', context)
 
 @login_required
 def Task(request):
-    return render(request, 'Dashboard/Task.html')
+    employees = Employee.objects.all()
+    context = {
+        'employees': employees
+    }
+    return render(request, 'Dashboard/Task.html', context)
