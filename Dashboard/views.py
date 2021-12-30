@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib.auth.models import User
 from Employee.models import Employee
 from django.contrib.auth.decorators import login_required
 
@@ -10,10 +11,11 @@ def Dashboard(request):
 
 @login_required
 def Personal(request):
+    employees = Employee.objects.all()
     context = {
-        'employee':Employee.objects.all()
+        'employees': employees
     }
-    return render(request, 'Dashboard/Personal.html')
+    return render(request, 'Dashboard/Personal.html', context)
 
 @login_required
 def Leave(request):

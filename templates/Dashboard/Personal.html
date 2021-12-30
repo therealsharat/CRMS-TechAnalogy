@@ -4,7 +4,8 @@
     <title>Personal</title>
 </head>
 {% block content %}
-
+{% for i in employees %}
+{% if i.user == user %}
 <style>
     .wrapper{
         position: absolute;
@@ -81,15 +82,12 @@
         color: #919aa3;
     }
 </style>
-
-
 <body>
 <div class="wrapper">
     <div class="left">
         <img src="https://i.imgur.com/cMy8V5j.png"
              alt="user" width="100">
-        <h4>{{user.username}}</h4>
-
+        <h4>{{i.user}}</h4>
     </div>
     <div class="right">
         <div class="info">
@@ -97,32 +95,30 @@
             <div class="info_data">
                 <div class="data">
                     <h4>Email</h4>
-                    <p>{{user.email}}</p>
+                    <p>{{i.email}}</p>
                 </div>
                 <div class="data">
                     <h4>Phone</h4>
-                    <p>0001-213-998761</p>
+                    <p>{{i.phoneNumber}}</p>
                 </div>
 
             </div>
         </div>
-
         <div class="E-info">
             <div class="info_data">
                 <div class="data">
                     <h4>Employee Id</h4>
-                    <p>0001-213-998761</p>
+                    <p>{{i.employeeid}}</p>
                 </div>
                 <div class="data">
                     <h4>Domain</h4>
-                    <p>Domain</p>
+                    <p>{{i.department}}</p>
                 </div>
             </div>
         </div>
-
-
-
     </div>
 </div>
 </body>
+{% endif %}
+{% endfor %}
 {% endblock content %}
