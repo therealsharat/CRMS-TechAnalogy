@@ -112,7 +112,11 @@
                 </div>
                 <div class="data">
                     <h4>Domain</h4>
-                    <p>{{i.department}}</p>
+                    <p>
+                        {% for j in i.department.all %}
+                        {{ j}}  <br/>
+                        {% endfor %}
+                    </p>
                 </div>
             </div>
         </div>

@@ -30,4 +30,3 @@ def Register(request):
     else:
         form = UserRegistrationForm()
     return render(request, 'Employee/Register.html', {'form':form})
-
