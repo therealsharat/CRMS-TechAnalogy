@@ -52,6 +52,8 @@ class Employee(models.Model):
     firstname = models.CharField('Firstname', max_length=125, null=False, blank=False)
     lastname = models.CharField('Lastname', max_length=125, null=False, blank=False)
 
+    image = models.ImageField(default='default.jpg', upload_to='profile_pics')
+
     department = models.ManyToManyField(Department, verbose_name='Department')
     role = models.ManyToManyField(Role, verbose_name='Role')
 
