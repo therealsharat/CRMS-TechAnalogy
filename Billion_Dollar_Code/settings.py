@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'Dashboard.apps.DashboardConfig',
     'Employee.apps.EmployeeConfig',
+    'leave.apps.LeaveConfig',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
