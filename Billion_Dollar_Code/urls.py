@@ -18,6 +18,7 @@ from django.urls import include, path
 from Employee import views as employee_views
 from django.conf import settings
 from django.conf.urls.static import static
+from leave import views as leave_views
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
@@ -25,6 +26,8 @@ urlpatterns = [
     path('', include('Employee.urls')),
     path('dashboard/', include('Dashboard.urls')),
     path('register/', employee_views.Register, name='register' ),
+    path('leave_creation/', leave_views.leave_creation, name='leave_creation')
+
 ]
 
 if settings.DEBUG:
