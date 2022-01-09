@@ -160,26 +160,29 @@
     <hr>
     <div class="form1">
         <label for="task">Leave Type: </label><br><br>
-        <form>
-            <select id="leave" name="leave">
-                <option value="sel">Select</option>
-                <option value="sl">Sick Leave</option>
-                <option value="cl">Casual Leave</option>
+        <form action="{% url 'leave_creation' %}" method="POST">
+            {% csrf_token %}
+            <select  name="leavetype">
+                <option value="sick">sick</option>
+                <option value="study">study Leave</option>
+                <option value="casual">Casual Leave</option>
+                <option value="emergency">emergency Leave</option>
+
             </select>
 
     </div>
     <div class="date1">
         <label for="Date">Start Date: </label>
-        <input type="date" id="Date" name="Date">
+        <input type="date" name="startdate">
     </div>
     <div class="date2">
         <label for="sreason">End Date: </label>
-        <input type="date" id="Date" name="Date">
+        <input type="date" name="enddate">
     </div>
     <div class="reason">
 
             <label for="sreason">Reason </label><br><br>
-            <textarea>Reason</textarea>
+            <textarea name="reason">Reason</textarea>
     </div>
 
     <div class="submit">
