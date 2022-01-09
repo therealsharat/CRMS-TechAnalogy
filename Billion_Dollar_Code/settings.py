@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'Dashboard.apps.DashboardConfig',
     'Employee.apps.EmployeeConfig',
     'leave.apps.LeaveConfig',
+    'Task.apps.TaskConfig',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',

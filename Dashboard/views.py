@@ -37,6 +37,13 @@ def Resignation(request):
     }
     return render(request, 'Dashboard/Resignation.html', context)
 
+def Task_View(request):
+    employees = Employee.objects.all()
+    context = {
+        'employees': employees
+    }
+    return render(request, 'Dashboard/Task_View.html', context)
+
 @login_required
 def Task(request):
     employees = Employee.objects.all()
