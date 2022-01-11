@@ -7,7 +7,16 @@
 {% for i in employees %}
 {% if i.user == user %}
 <body>
-<h3>Welcome {{i.firstname}}!</h3>
+{% if i.get_role == 'DomainHead' %}
+<h3>code for domain heads</h3>
+{% elif i.get_role == 'Executives' %}
+<h3>code for Executives</h3>
+{% elif i.get_role == 'TechnicalHead' %}
+<h3>code for Technical head</h3>
+
+
+{% endif %}
+
 </body>
 {% endif %}
 {% endfor %}

@@ -68,5 +68,11 @@ class Employee(models.Model):
     created = models.DateTimeField(verbose_name='Created', auto_now_add=True, null=True)
     updated = models.DateTimeField(verbose_name='Updated', auto_now=True, null=True)
 
+    def get_role(self):
+        r=''
+        for role in self.role.all():
+            r=r+role.role_name
+        return r
+
     def __str__(self):
         return f'{self.user} Profile'

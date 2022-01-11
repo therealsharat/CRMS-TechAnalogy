@@ -139,40 +139,33 @@
 <div class="rightbar">
     <h1>RESIGNATION REQUEST</h1>
     <hr>
+    <form action="{% url 'resignation' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
     <div class="rightbar1">
-        <form>
+
             <label for="Date">Proposed Termination Date:</label>
-            <input type="date" id="Date" name="Date">
-        </form>
+            <input type="date"  name="Termination_date">
+
     </div>
     <div class="rightbar2">
-        <form >
-            <label for="preason">Primary Reason</label><br><br>
-            <textarea>Primary Reason</textarea>
-        </form>
+
+            <label for="preason">Reason</label><br><br>
+            <textarea name="reason"> Reason</textarea>
     </div>
-    <div class="rightbar3">
-        <form >
-            <label for="sreason">Secondary Reason</label><br><br>
-            <textarea>Secondary Reason</textarea>
-        </form>
-    </div>
+
     <div class="rightbar4">
-        <form >
+
             <label for="myfile">Attachment:</label>
-            <input type="file" id="myfile" name="myfile" multiple><br><br>
-        </form>
+            <input type="file" name="attachment" multiple><br><br>
+
     </div>
     <div class="submit">
-        <form >
+
             <input type="submit" value="Submit"></form>
-        </form>
+
     </div>
-    <div class="cancel">
-        <form >
-            <input type="submit" value="Cancel"></form>
-        </form>
-    </div>
+
+    </form>
 </div>
 </body>
 {% endif %}
