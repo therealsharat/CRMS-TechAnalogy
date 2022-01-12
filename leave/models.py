@@ -11,6 +11,11 @@ LEAVE_TYPE = (
 ('emergency','Emergency Leave'),
 ('study','Study Leave')
 )
+STATUS_TYPE = (
+('Pending','Pending'),
+('Approved','Approved'),
+('Rejected','Rejected'),
+)
 
 class leave(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE)
@@ -18,5 +23,22 @@ class leave(models.Model):
     enddate = models.DateField('enddate', help_text='end date of employment', blank=False, null=True)
     leavetype = models.CharField(choices=LEAVE_TYPE, max_length=25, default='sick', null=True, blank=False)
     reason = models.CharField('Reason', max_length=255, help_text='add additional information for leave', null=True, blank=True)
+    status=models.CharField(choices=STATUS_TYPE, max_length=25,default='Pending')
+    is_approved=models.BooleanField(default=False)
     def __str__(self):
         return ('{0} - {1}'.format(self.leavetype, self.user))
+
+    def get_leave(self):
+        leave=self.leavetype
+        user=self.user
+        employee=user.employee.get_name
+        return ('{0} -{1}'.format(employee,leave))
+    def approve_leave(self):
+        if not self.is_apporoved:
+            self.is_approved=True
+            self.status='Approved'
+            self.save()
+    def reject_leave(self):
+        self.is_approved=False
+        self.status='Rejected'
+        self.save()

@@ -73,6 +73,17 @@ class Employee(models.Model):
         for role in self.role.all():
             r=r+role.role_name
         return r
+    def get_name(self):
+        first_name=self.firstname
+        last_name=self.lastname
+        if not first_name:
+            return last_name
+        elif not last_name:
+            return first_name
+        else:
+            full_name=first_name+' '+last_name
+            return full_name
+
 
     def __str__(self):
         return f'{self.user} Profile'
