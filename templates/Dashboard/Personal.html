@@ -1,16 +1,12 @@
 {%  extends "Dashboard/Navbar.html" %}
-<head>
-    <meta charset="UTF-8">
-    <title>Personal</title>
-</head>
-{% block content %}
-{% for i in employees %}
-{% if i.user == user %}
-<style>
+
+
+{% block extra_head %}
+
     .wrapper{
         position: absolute;
         top: 50%;
-        left: 50%;
+        left: 57%;
         transform: translate(-50%,-50%);
         width: 1500px;
         display: flex;
@@ -20,7 +16,7 @@
     .wrapper .left{
         width: 35%;
         background: #1E90FF;
-        padding: 30px 25px;
+        padding: 30px 50px;
         border-top-left-radius: 5px;
         border-bottom-left-radius: 5px;
         text-align: center;
@@ -30,6 +26,7 @@
     .wrapper .left img{
         border-radius: 5px;
         margin-bottom: 10px;
+        width:35%;
     }
 
     .wrapper .left h4{
@@ -81,13 +78,20 @@
         margin-bottom: 10px;
         color: #919aa3;
     }
-</style>
+
+{% endblock %}
+{% block content %}
+{% for i in employees %}
+{% if i.user == user %}
+
 <body>
 <div class="wrapper">
     <div class="left">
         <img src="{{ i.image.url }}"
              alt="user" width="100">
-        <h4>{{i.title}} {{i.firstname}} {{i.lastname}}</h4>
+        <h3>{{i.title}} {{i.firstname}} {{i.lastname}}</h3>
+                <h4>{{i.get_role}}</h4>
+
     </div>
     <div class="right">
         <div class="info">

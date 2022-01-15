@@ -3,145 +3,137 @@
     <meta charset="UTF-8">
     <title>Dashboard</title>
 </head>
+{% block Style %}
+    <link rel="stylesheet" type="text/css" href="/static/Css/Dashboard.css">
+{% endblock %}
 {% block content %}
-<style>
-.rightbar {
-	overflow: auto;
-	position: absolute;
-	background-color:rgba(255,255,255);
-	left: 0px;
-	width: 100%;
-	height: 100%;
-	padding: 15px;
-	color: #21618C;
-}
-.rightbar h1{
-letter-spacing: 5px;
-font-weight: normal;
-color: black;
 
-}
-.personaldata{
-	position: absolute;
-	left: 100px;
-	padding: 15px;
-	font-weight: 1000;
-
-	top: 150px;
-
-}
-.personaldata input[type=submit] {
-  background-color: #1E90FF;
-  color: white;
-  width: 250px;
-	height: 300px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  	font-size:20;
-}
-.personaldata input[type=submit]:hover {
-  background-color: #21578c;
-}
-.taskassigned{
-	position: absolute;
-	left: 400px;
-	padding: 15px;
-	font-weight: normal;
-	top: 150px;
-}
-.taskassigned input[type=submit] {
-	background-color: #1E90FF;
-  color: white;
-  width: 250px;
-	height: 300px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-.taskassigned input[type=submit]:hover {
-	background-color: #21578c;
-}
-.leaveapplication{
-	position: absolute;
-	left: 700px;
-	padding: 15px;
-	font-weight: normal;
-	top: 150px;
-}
-.leaveapplication input[type=submit] {
-	background-color: #1E90FF;
-  color: white;
-  width: 250px;
-	height: 300px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-.leaveapplication input[type=submit]:hover {
-  background-color: #21578c;
-}
-.resignation{
-	position: absolute;
-	left: 1000px;
-	padding: 15px;
-	font-weight: normal;
-	top: 150px;
-}
-.resignation input[type=submit] {
-	background-color: #1E90FF;
-  color: white;
-  width: 250px;
-	height: 300px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-.resignation input[type=submit]:hover {
-	background-color: #21578c;
-}
-</style>
 {% for i in employees %}
 {% if i.user == user %}
 <body>
+{% if i.get_role == "TechnicalHead" %}
+<div class="row row-cols-1 row-cols-lg-4 g-3 g-lg-4" >
+  <div class="col">
+    <div class="card text-center " >
 
-	<div class="rightbar">
-		<h1>DASHBOARD</h1>
-		<hr>
-		{%if i.get_role == 'DomainHead' %}
-		<form action="{% url 'Leave' %}">
-		<div class="PersonalData">
-			<input type="submit"  value ='Leaves'>
-		</div>
+      <div class="card-body">
+      <a href="{% url 'leave_request' %}" class="btn btn-primary stretched-link"></a>
+        <p class="card-text">Leave Requests</p>
+        <p class="card-text1">Leaves applied: {{leaves}}
+        <br> Pending Leaves : {{pending_leaves}}</p>
 
-		</form>
-		{% endif %}
 
-		{%if i.get_role == 'DomainHead' or i.get_role== 'Executives' %}
-		<form>
-		<div class="taskassigned">
-		<input type="submit" value="Task Assigned">
-		</div>
-		</form>
-		{% endif %}
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card text-center">
+      <div class="card-body ">
+        <a href="#" class="btn btn-primary stretched-link"></a>
+        <p class="card-text">Resignation Requests</p>
+        <p class="card-text1">Resignations applied: {{resignations}}
+        <br> Pending requests : {{pending_resignations}}</p>
 
-		<form>
-		<div class="leaveapplication">
-			<input type="submit" value="Leave Application">
-		</div>
-			</form>
+      </div>
 
-		<form>
-		<div class="resignation">
-			<input type="submit" value="Resignation">
-		</div>
-		</form>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card text-center">
+      <div class="card-body ">
+        <a href="#" class="btn btn-primary stretched-link"></a>
+        <p class="card-text">Task-assigned</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
 
-	</div>
+{% if i.get_role == "DomainHead" %}
+<div class="row row-cols-1 row-cols-lg-4 g-3 g-lg-4" >
+  <div class="col">
+    <div class="card text-center">
+      <div class="card-body">
+        <a href="#" class="btn btn-primary stretched-link"></a>
+                <p class="card-text">Leave Applications
+                </p>
+                <p class="card-text1">Leaves applied: {{user_leaves}}
+                <br> Pending Leaves : {{user_pending_leaves}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card text-center ">
+      <div class="card-body">
+      <a href="{% url 'leave_request' %}" class="btn btn-primary stretched-link"></a>
+        <p class="card-text">Leave Requests</p>
+         <p class="card-text1">Leave requests: {{dom_leaves}}
+                <br> Pending requests : {{dom_pending_leaves}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card text-center">
+      <div class="card-body ">
+        <p class="card-text">Task-assigned</p>
+
+      </div>
+
+    </div>
+  </div>
+   <div class="col">
+    <div class="card text-center">
+      <div class="card-body">
+        <a href="#" class="btn btn-primary stretched-link"></a>
+          <p class="card-text">Resignation Application</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% if i.get_role == "Executives" %}
+<div class="row row-cols-1 row-cols-lg-4 g-3 g-lg-4" >
+  <div class="col">
+    <div class="card text-center">
+      <div class="card-body">
+        <a href="#" class="btn btn-primary stretched-link"></a>
+                <p class="card-text">Leave Applications</p>
+
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card text-center ">
+      <div class="card-body">
+      <a href="#" class="btn btn-primary stretched-link"></a>
+        <p class="card-text">Leave Requests</p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card text-center">
+      <div class="card-body ">
+        <p class="card-text">Task-assigned</p>
+
+      </div>
+
+    </div>
+  </div>
+   <div class="col">
+    <div class="card text-center">
+      <div class="card-body">
+        <a href="#" class="btn btn-primary stretched-link"></a>
+          <p class="card-text">Resignation Application</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+
+
+
 </body>
 {% endif %}
 {% endfor %}

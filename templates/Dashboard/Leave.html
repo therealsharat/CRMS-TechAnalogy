@@ -25,6 +25,8 @@
     }
     .leftbar img{
         border-radius: 100%;
+        	object-fit: cover;
+
     }
     .rightbar {
         overflow: auto;
@@ -167,6 +169,7 @@
     <div class="submit" >
             <input type="submit" value="Submit">
     </div>
+    <input type="hidden" name="department" value="{{ i.user.employee.get_department }}">
 
     </form>
 </div>

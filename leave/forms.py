@@ -8,6 +8,7 @@ class LeaveCreationForm(forms.ModelForm):
     leavetype=forms.ChoiceField(choices = CHOICES,
                        widget=forms.Select(attrs={'class': 'nice-select rounded'}),
                        )
+    department=forms.CharField(max_length=30)
     class Meta:
         model =leave
-        fields=['startdate','enddate','reason','leavetype']
+        fields=['startdate','enddate','reason','leavetype','department']

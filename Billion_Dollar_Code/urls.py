@@ -20,15 +20,17 @@ from django.conf import settings
 from django.conf.urls.static import static
 from leave import views as leave_views
 from Resignation import views as resig_views
+
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('Employee.urls')),
+    path('leave_request/', leave_views.LeaveRequest, name='leave_request'),
     path('dashboard/', include('Dashboard.urls')),
     path('register/', employee_views.Register, name='register' ),
     path('leave_creation/', leave_views.leave_creation, name='leave_creation'),
-    path('resignation/', resig_views.Resignation, name='resignation')
+    path('resignation/', resig_views.resignation, name='resignation')
 
 ]
 

@@ -73,6 +73,11 @@ class Employee(models.Model):
         for role in self.role.all():
             r=r+role.role_name
         return r
+    def get_department(self):
+        r=''
+        for department in self.department.all():
+            r=r+department.department_name
+        return r
     def get_name(self):
         first_name=self.firstname
         last_name=self.lastname

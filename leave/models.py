@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
-
+from Employee.models import Department
 # Create your models here.
 
 #enums
@@ -25,6 +25,8 @@ class leave(models.Model):
     reason = models.CharField('Reason', max_length=255, help_text='add additional information for leave', null=True, blank=True)
     status=models.CharField(choices=STATUS_TYPE, max_length=25,default='Pending')
     is_approved=models.BooleanField(default=False)
+    department= models.CharField('department',max_length=30,default=None,null=True)
+
     def __str__(self):
         return ('{0} - {1}'.format(self.leavetype, self.user))
 
@@ -32,9 +34,9 @@ class leave(models.Model):
         leave=self.leavetype
         user=self.user
         employee=user.employee.get_name
-        return ('{0} -{1}'.format(employee,leave))
+        return ('{0}-{1}'.format(employee,leave))
     def approve_leave(self):
-        if not self.is_apporoved:
+        if not self.is_approved:
             self.is_approved=True
             self.status='Approved'
             self.save()

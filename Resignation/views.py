@@ -3,7 +3,7 @@ from Resignation.forms import ResigCreationForm
 from django.contrib.auth.models import User
 from django.core.files.storage import FileSystemStorage
 # Create your views here.
-def Resignation(request):
+def resignation(request):
     if request.method=='POST':
 
         form=ResigCreationForm(request.POST,request.FILES)
