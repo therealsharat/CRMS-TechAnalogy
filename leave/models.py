@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
 from Employee.models import Department
+from datetime import date
 # Create your models here.
 
 #enums
@@ -18,6 +19,7 @@ STATUS_TYPE = (
 )
 
 class leave(models.Model):
+    applied_date=models.DateField('applied_date',default=date.today)
     user=models.ForeignKey(User,on_delete=models.CASCADE)
     startdate = models.DateField('startdate', help_text='start data of employment', blank=False, null=True)
     enddate = models.DateField('enddate', help_text='end date of employment', blank=False, null=True)

@@ -1,0 +1,19 @@
+ {%  extends "Dashboard/Navbar.html" %}
+{% block Style %}
+    <link rel="stylesheet" type="text/css" href="/static/Css/LeaveRequest.css">
+{% endblock %}
+
+ {% block content %}
+ {% for i in resignation %}
+  <div class="card">
+    <div class="card-body">
+      <p class="card-text"> <br>
+          <strong>Applied Date</strong> : {{i.applied_date}} <br> <br>
+        <strong>Termination_date</strong>: {{i.Termination_date}}
+          <br><br> <strong> Reason </strong>: {{i.reason}}
+          <br><br>  <strong>status</strong> : {{i.status}}
+      </p>
+    </div>
+  </div>
+ {% endfor %}
+{% endblock %}

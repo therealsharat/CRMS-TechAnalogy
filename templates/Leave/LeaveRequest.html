@@ -6,10 +6,11 @@
 {% block content %}
 {% if user.employee.get_role == "TechnicalHead" %}
 {% for i in pending_leaves %}
- {{i.is_approved}}
   <div class="card">
     <div class="card-body">
       <p class="card-text"> <br> <strong>Name</strong>: {{i.user.employee.get_name}} <br><br>
+          <strong>Department</strong> : {{i.department}} <br> <br>
+          <strong>Applied Date</strong> : {{i.applied_date}} <br> <br>
         <strong>Start Date</strong>: {{i.startdate}} <br> <br> <strong> End Date </strong>: {{i.enddate}}<br> <br>
          <strong>Leave Type</strong>: {{i.leavetype}} <br> <br> <strong> Reason </strong>: {{i.reason}}
       </p>
@@ -21,7 +22,7 @@
               <button type="submit"  name="accept"  class="btn btn-primary mb-3">Accept</button>
             </div>
             <div class="col-auto">
-              <button type="submit"   name="reject"  onclick={{i.reject_leave}} class="btn btn-primary mb-3">Reject</button>
+              <button type="submit"   name="reject"   class="btn btn-primary mb-3">Reject</button>
             </div>
           </form>
         </div>
@@ -32,10 +33,12 @@
 
 {% else %}
 {% for i in dep_leaves %}
- {{i.is_approved}}
+{% if i.user.employee.get_role != "DomainHead" %}
   <div class="card">
     <div class="card-body">
       <p class="card-text"> <br> <strong>Name</strong>: {{i.user.employee.get_name}} <br><br>
+          <strong>Applied Date</strong> : {{i.applied_date}} <br> <br>
+
         <strong>Start Date</strong>: {{i.startdate}} <br> <br> <strong> End Date </strong>: {{i.enddate}}<br> <br>
          <strong>Leave Type</strong>: {{i.leavetype}} <br> <br> <strong> Reason </strong>: {{i.reason}}
       </p>
@@ -47,13 +50,13 @@
               <button type="submit"  name="accept"  class="btn btn-primary mb-3">Accept</button>
             </div>
             <div class="col-auto">
-              <button type="submit"   name="reject"  onclick={{i.reject_leave}} class="btn btn-primary mb-3">Reject</button>
+              <button type="submit"   name="reject"   class="btn btn-primary mb-3">Reject</button>
             </div>
           </form>
         </div>
     </div>
   </div>
-
+{% endif %}
 {% endfor %}
 {% endif %}
 

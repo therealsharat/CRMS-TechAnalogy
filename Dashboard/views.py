@@ -11,22 +11,22 @@ from Resignation.models import Resignation
 def Dashboard(request):
     employees = Employee.objects.all()
     resignations=Resignation.objects.all()
-    pending_resignations=Resignation.objects.filter(is_approved=False)
-    #for user
+    pending_resignations=resignations.filter(status='Pending')
 
-    user_leaves=leave.objects.filter(user=request.user)
-    user_pending_leaves=user_leaves.filter(is_approved=False)
+    # for technical head
+    leaves = leave.objects.all()
+    pending_leaves = leaves.filter(status="Pending")
 
-    #for technical head
+    # for user
 
-    leaves=leave.objects.all()
-    pending_leaves=leaves.filter(is_approved=False)
-
+    user_leaves=leaves.filter(user=request.user)
+    user_pending_leaves=user_leaves.filter(status="Pending")
 
     #for department heads
 
-    dep_leaves = leave.objects.filter(department=request.user.employee.get_department())
-    dep_pending_leaves = leaves.filter(is_approved=False)
+    dep_leaves = leaves.filter(department=request.user.employee.get_department())
+    dep_pending_leaves = dep_leaves.filter(status="Pending")
+    dep_pending_leaves=dep_pending_leaves.filter()
 
     context = {
         'employees': employees,

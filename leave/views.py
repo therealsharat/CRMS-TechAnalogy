@@ -10,25 +10,22 @@ def leave_creation(request):
         Leave.user=request.user
         Leave.save()
         return redirect('/dashboard')
-
     else:
         form=LeaveCreationForm()
     return render(request,'Dashboard/Leave.html')
 def LeaveRequest(request):
     if request.method =="POST":
+        id1 = request.POST.get("id")
+        obj = leave.objects.get(id=id1)
         if "accept" in request.POST:
-            id1=request.POST.get("id")
-            obj=leave.objects.get(id=id1)
-            print("saving objects")
             obj.approve_leave()
-            obj.save()
         if "reject" in request.POST:
-            print("rejected")
-        return redirect('/leave_request')
+            obj.reject_leave()
+        return redirect('leave_request')
     leaves = leave.objects.all()
-    pending_leaves = leave.objects.filter(is_approved=False)
+    pending_leaves = leave.objects.filter(status="Pending")
     dep_leaves = leaves.filter(department=request.user.employee.get_department())
-    pending_dep_leaves=dep_leaves.filter(is_approved=False)
+    pending_dep_leaves=dep_leaves.filter(status="Pending")
 
     context = {
         "leaves": leaves,
@@ -37,3 +34,11 @@ def LeaveRequest(request):
     }
     return render(request,'Leave/LeaveRequest.html',context)
 
+def leave_status(request):
+    leaves=leave.objects.all()
+    my_leaves=leaves.filter(user=request.user)
+    my_leaves=reversed(list(my_leaves))
+    context={
+        "my_leaves":my_leaves
+    }
+    return render(request,'Leave/LeaveStatus.html',context)
