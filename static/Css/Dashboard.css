@@ -1,3 +1,9 @@
+ body{
+
+background-color: #d3d3d3;
+background-image: linear-gradient( #eeaeca, #94bbe9);
+}
+
     .nav-item  a{
     font-family: Helvetica;
                 color: #21618D !important;
@@ -15,11 +21,13 @@
     .navbar{
     margin-bottom: 8%;
     }
-    .card{
+    .card{   .navbar{
+    margin-bottom: 15%;
+    }
 
     width:18rem;
     height:30rem;
-    background-color: #1E90FF !important;
+    background: linear-gradient( #eeaeca, #94bbe9 80%) !important;
     text-align: center;
     box-shadow: 5px 5px 10px rgba(0,0,0,.4);
     border-radius: 2em;
@@ -28,7 +36,7 @@
     }
 
     .card-body a{
-        background-color: #1E90FF !important;
+        background-color: transparent !important;
         border:0px;
 
     }
@@ -63,6 +71,19 @@
         width:70px;
         padding-left:0.5%
     }
+
+        }
+
+          @media (max-width: 550px){
+           .row{
+           padding-left:15%;
+           }
+
+        }
+        @media (max-width: 400px){
+           .row{
+           padding-left:5%;
+           }
 
         }
 

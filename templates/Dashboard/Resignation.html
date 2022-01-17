@@ -1,173 +1,62 @@
 {%  extends "Dashboard/Navbar.html" %}
-<head>
-    <meta charset="UTF-8">
-    <title>Resignation Request</title>
-</head>
+
+
+{% block Style %}
+<link rel="stylesheet" type="text/css" href="/static/Css/leave.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mochiy+Pop+P+One ">
+{% endblock %}
+
 {% block content %}
-{% for i in employees %}
-{% if i.user == user %}
-<style>
-    .leftbar {
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        position: absolute;
-        left: 0px;
-        width: 200px;
-        height: 100%;
-        background-color: rgba(30,144,255);
-        padding: 15px;
-        text-align: center;
-        color: white;
-    }
+{% for i in  employees %}
+{% if i.user ==  user %}
+<div class="personal">
+          <div class="container-fluid ">
+                <div class="row align-items-center">
+                    <div class="col-md-0  mt-0 ">
+                      </div>
 
-    .leftbar img{
-        border-radius: 100%;
-    }
+                    <div class="col-md-12 mt-0">
+                        <div class="form-bg">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-container">
+                                                <h3 class="title">Resignation </h3>
+                                                <form class="form-horizontal" action="{% url 'Resignation_creation' %}" enctype="multipart/form-data" method="POST">
+                                                    {% csrf_token %}
 
-    .rightbar {
-        position: absolute;
-        background-color:rgba(255,255,255);
-        left: 230px;
-        width: 100%;
-        height: 100%;
-        padding: 15px;
-        color: #21618C;
-    }
+                                                    <div></div>
+                                                    <div class="form-group">
+                                                        <label>Termination date</label>
+                                                        <input type="date" class="form-control"  name="Termination_date">
+                                                    </div>
 
-    .rightbar h1{
-        letter-spacing: 5px;
-        font-weight: normal;
-        color: black;
-    }
+                                                    <div class="form-group" style="width:100%;">
+                                                        <label>Reason</label>
+                                                        <textarea class="form-control " style="height:50 !important;" name="reason" ></textarea>
+                                                    </div>
 
-    .rightbar1{
-        position: absolute;
-        left: 0px;
-        padding: 15px;
-    }
+                                                    <div class="form-group" style="width:100%;">
+                                                        <label>Resignation Letter</label>
 
-    .rightbar2{
-        position: absolute;
-        left: 0px;
-        padding: 15px;
-        top: 180px;
-        font-weight: normal;
-    }
+                                                        <input class="form-control" type="file" name="attachment">
+                                                    </div>
 
-    textarea {
-        width: 500px;
-        height: 150px;
-        padding: 12px 20px;
-        box-sizing: border-box;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        background-color: #f8f8f8;
-        font-size: 16px;
-        resize: none;
-        font-family: Helvetica;
-        color: 	#C0C0C0;
-    }
+                                                <button class="btn signup">Submit</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-    .rightbar3{
-        position: absolute;
-        left: 550px;
-        padding: 15px;
-        top: 180px;
-        font-weight: normal;
-    }
+                     </div>
 
-    .rightbar4{
-        position: absolute;
-        left: 0px;
-        padding: 15px;
-        font-weight: normal;
-        top: 420px;
-    }
 
-    .submit{
-        position: absolute;
-        left: 25px;
-        padding: 15px;
-        font-weight: normal;
-        top: 500px;
-    }
-
-    .cancel{
-        position: absolute;
-        left: 880px;
-        padding: 15px;
-        font-weight: normal;
-        top: 500px;
-    }
-
-    .submit input[type=submit] {
-        background-color: #4CAF50;
-        color: white;
-        padding: 14px 20px;
-        margin: 8px 0;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-
-    .submit input[type=submit]:hover {
-        background-color: #45a049;
-    }
-
-    .cancel input[type=submit] {
-        background-color: white;
-        color: #4CAF50;
-        padding: 14px 20px;
-        margin: 8px 0;
-        border: 2px solid #4CAF50;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-
-    .cancel input[type=submit]:hover {
-        background-color: #45a049;
-        color: white;
-        border: none;
-    }
-
-</style>
-<body>
-<div class="leftbar">
-    <p>{{i.firstname}} {{i.lastname}}</p>
-    <img src="{{i.image.url}}" width="170" height="170">
-    <p>{{i.employeeid}}</p>
+          </div>
 </div>
-<div class="rightbar">
-    <h1>RESIGNATION REQUEST</h1>
-    <hr>
-    <form action="{% url 'Resignation_creation' %}" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-    <div class="rightbar1">
-
-            <label for="Date">Proposed Termination Date:</label>
-            <input type="date"  name="Termination_date">
-
-    </div>
-    <div class="rightbar2">
-
-            <label for="preason">Reason</label><br><br>
-            <textarea name="reason"> Reason</textarea>
-    </div>
-
-    <div class="rightbar4">
-
-            <label for="myfile">Attachment:</label>
-            <input type="file" name="attachment" multiple><br><br>
-
-    </div>
-    <div class="submit">
-
-            <input type="submit" value="Submit"></form>
-
-    </div>
-
-    </form>
-</div>
-</body>
 {% endif %}
 {% endfor %}
-{% endblock content %}
+
+{% endblock %}

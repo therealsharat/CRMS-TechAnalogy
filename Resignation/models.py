@@ -16,6 +16,7 @@ class Resignation(models.Model):
     attachment=models.FileField(upload_to='resignation')
     is_approved=models.BooleanField(default=False)
     status=models.CharField(choices=STATUS_TYPE,max_length=25,default='Pending')
+
     def __str__ (self):
         return ('{0}'.format(self.user))
     def Approve(self):

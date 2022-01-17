@@ -11,10 +11,17 @@
     <div class="card-body">
       <p class="card-text"> <br> <strong>Name</strong>: {{i.user.employee.get_name}} <br><br>
           <strong>Department</strong> : {{i.user.employee.get_department}} <br> <br>
-
           <strong>Applied Date</strong> : {{i.applied_date}} <br> <br>
-        <strong>Start Date</strong>: {{i.startdate}} <br> <br> <strong> End Date </strong>: {{i.enddate}} <br> <br> <strong> Reason </strong>: {{i.reason}}
+          <strong>Reason</strong> : {{i.reason}} <br> <br>
+        <form action="{% url 'file_download' %}" method="POST">
+        {% csrf_token %}
+          <strong>Resignation Letter</strong>: <button type="submit"  class="btn btn-primary mb-3" style="background:transparent;color:black;">Click To Download</button>
+        <input type="hidden" name="attachment" value="{{ i.attachment }}">
+
+</form>
+
       </p>
+
         <div class="buttons">
         <form class="row g-6" action="{% url 'Resignation_request' %} " method="POST" >
             {% csrf_token %}

@@ -3,6 +3,9 @@ from Resignation.forms import ResigCreationForm
 from django.contrib.auth.models import User
 from django.core.files.storage import FileSystemStorage
 from Resignation.models  import Resignation
+import os
+from django.conf import settings
+from django.http import HttpResponse, Http404
 # Create your views here.
 def resignation_creation(request):
     if request.method=='POST':
@@ -38,3 +41,16 @@ def resignation_status(request):
         "resignation":resignation
     }
     return render(request,'Resignation/ResignationStatus.html',context)
+def FileDownload(request):
+    if request.method=='POST':
+        file_name=request.POST.get('attachment')
+        file_path=os.path.join(settings.MEDIA_ROOT,file_name)
+        if os.path.exists(file_path):
+            with open(file_path, 'rb') as fh:
+                response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
+                response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+                return response
+        raise Http404
+    else:
+        form=ResigCreationForm()
+    return render(request,'Dashboard/Resignation.html')

@@ -1,132 +1,103 @@
 {%  extends "Dashboard/Navbar.html" %}
 
 
-{% block extra_head %}
-
-    .wrapper{
-        position: absolute;
-        top: 50%;
-        left: 57%;
-        transform: translate(-50%,-50%);
-        width: 1500px;
-        display: flex;
-        box-shadow: 0 1px 20px 0 rgba(69,90,100,.08);
-    }
-
-    .wrapper .left{
-        width: 35%;
-        background: #1E90FF;
-        padding: 30px 50px;
-        border-top-left-radius: 5px;
-        border-bottom-left-radius: 5px;
-        text-align: center;
-        color: #fff;
-    }
-
-    .wrapper .left img{
-        border-radius: 5px;
-        margin-bottom: 10px;
-        width:35%;
-    }
-
-    .wrapper .left h4{
-        margin-bottom: 10px;
-    }
-
-    .wrapper .left p{
-        font-size: 12px;
-    }
-
-    .wrapper .right{
-        width: 65%;
-        background: #fff;
-        padding: 30px 25px;
-        border-top-right-radius: 5px;
-        border-bottom-right-radius: 5px;
-    }
-
-    .wrapper .right .info,
-    .wrapper .right .E-info{
-        margin-bottom: 25px;
-    }
-
-    .wrapper .right .info h3{
-        margin-bottom: 15px;
-        padding-bottom: 5px;
-        border-bottom: 1px solid #e0e0e0;
-        color: #353c4e;
-        text-transform: uppercase;
-        letter-spacing: 5px;
-    }
-
-    .wrapper .right .info_data{
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .wrapper .right .info_data .data{
-        width: 45%;
-    }
-
-    .wrapper .right .info_data .data h4{
-        color: #353c4e;
-        margin-bottom: 5px;
-    }
-
-    .wrapper .right .info_data .data p{
-        font-size: 13px;
-        margin-bottom: 10px;
-        color: #919aa3;
-    }
-
+{% block Style %}
+<link rel="stylesheet" type="text/css" href="/static/Css/personal.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mochiy+Pop+P+One ">
 {% endblock %}
+
 {% block content %}
 {% for i in employees %}
 {% if i.user == user %}
 
 <body>
-<div class="wrapper">
-    <div class="left">
-        <img src="{{ i.image.url }}"
-             alt="user" width="100">
-        <h3>{{i.title}} {{i.firstname}} {{i.lastname}}</h3>
-                <h4>{{i.get_role}}</h4>
+<div class="personal">
+	<div class="container-fluid register">
+        <div class="row ">
+            <div class="col-md-6">
+                <div class="card " >
+                    <div class="row align-items-center">
+                        <div class="col-md-4 ms-7">
+                        </div>
+                         <div class="col-md-4 ms-7">
+                             <br>
+                            <img class="card-img" src="{{i.image.url}}" alt="Card image cap" >
 
-    </div>
-    <div class="right">
-        <div class="info">
-            <h3>Information</h3>
-            <div class="info_data">
-                <div class="data">
-                    <h4>Email</h4>
-                    <p>{{i.email}}</p>
+                        </div>
+
+                    </div>
+                    <div class="row">
+
+                         <div class="col-md ms-2">
+                             <br>
+                             <div class="name" style="color:white;font-size:25px;font-family: 'Mochiy Pop P One', sans-serif; text-align:center;">
+                                 {{i.get_name}}
+                             </div>
+                             <div class="name" style="color:white;font-family: 'Mochiy Pop P One', sans-serif; text-align:center;">
+                                 {{i.get_role}}
+                             </div>
+                             <div>                             <br><br><br><br><br><br><br>
+                             </div>
+
+
+                        </div>
+
+                    </div>
                 </div>
-                <div class="data">
-                    <h4>Phone</h4>
-                    <p>{{i.phoneNumber}}</p>
+            </div>
+
+            <div class="col-md-6">
+                <br>
+                <div class="left">
+
+                <div class="row ">
+
+                    <h1>Personal Details</h1>
+                    <hr>
+                    <br><br><br>
+                    <div class="col-md-6 ">
+                        <div class="text"><strong>Email</strong>:<br>{{i.email}}
+                        </div>
+
+                    </div>
+                    <div class="col-md-6 ps-5">
+                        <div class="font-weight-bold"><strong>phone </strong>:<br>
+                            {{i.phoneNumber}}
+                        </div>
+                    </div>
+
                 </div>
+
+
+                <br><br><br><br>
+                 <div class="row ">
+
+                    <div class="col-md-6 ">
+                        <br>
+                        <div class="font-weight-bold"><strong>Employee Id </strong>:<br>{{i.employeeid}}
+                        </div>
+
+                    </div>
+                    <div class="col-md-6 ps-5"><br>
+                        <div class="font-weight-bold"><strong>Domain </strong> :<br>
+                            {{i.get_department}}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            </div>
 
             </div>
         </div>
-        <div class="E-info">
-            <div class="info_data">
-                <div class="data">
-                    <h4>Employee Id</h4>
-                    <p>{{i.employeeid}}</p>
-                </div>
-                <div class="data">
-                    <h4>Domain</h4>
-                    <p>
-                        {% for j in i.department.all %}
-                        {{ j}}  <br/>
-                        {% endfor %}
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
+
+	</div>
 </body>
 {% endif %}
 {% endfor %}
+
+
 {% endblock content %}

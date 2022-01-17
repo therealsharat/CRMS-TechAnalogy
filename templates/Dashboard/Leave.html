@@ -1,179 +1,70 @@
 {%  extends "Dashboard/Navbar.html" %}
-<head>
-    <meta charset="UTF-8">
-    <title>Leave</title>
-</head>
+
+
+{% block Style %}
+<link rel="stylesheet" type="text/css" href="/static/Css/leave.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mochiy+Pop+P+One ">
+{% endblock %}
+
 {% block content %}
-{% for i in employees %}
-{% if i.user == user %}
-<style>
-    body{
-        Margin:0;
-        font-family: Helvetica;
-    }
+{% for i in  employees %}
+{% if i.user ==  user %}
+<div class="personal">
+          <div class="container-fluid ">
+                <div class="row align-items-center">
+                    <div class="col-md-0  mt-0 ">
+                      </div>
 
-    .leftbar {
-        position: absolute;
-        left: 0px;
-        width: 200px;
-        height: 100%;
-        background-color: rgba(30,144,255);
-        padding: 15px;
-        text-align: center;
-        color: white;
+                    <div class="col-md-12 mt-0">
+                        <div class="form-bg">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-container">
+                                                <h3 class="title">Leave Application</h3>
+                                                <form class="form-horizontal" action="{% url 'leave_creation' %}" method="POST">
+                                                    {% csrf_token %}
+                                                    <div class="form-group " style="width:100%;">
+                                                        <label> Leavetype </label>
+                                                        <select  name="leavetype" class="form-control" >
+                                                                        <option value="sick">sick</option>
+                                                                        <option value="study">study Leave</option>
+                                                                        <option value="casual">Casual Leave</option>
+                                                                        <option value="emergency">emergency Leave</option>
+                                                        </select>
+                                                    </div>
+                                                    <div></div>
+                                                    <div class="form-group">
+                                                        <label>Start date</label>
+                                                        <input type="date" class="form-control"  name="startdate">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>End date</label>
+                                                        <input type="date" class="form-control" name="enddate">
+                                                    </div>
+                                                    <div class="form-group" style="width:100%; ">
+                                                        <label>Reason</label>
+                                                        <textarea class="form-control " name="reason" ></textarea>
+                                                    </div>
+                                                    <div>
+                                                        <input type="hidden" name="department" value="{{ i.user.employee.get_department }}">
+                                                    </div>
 
-    }
-    .leftbar img{
-        border-radius: 100%;
-        	object-fit: cover;
+                                                <button class="btn signup">Submit</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-    }
-    .rightbar {
-        overflow: auto;
-        position: absolute;
-        background-color:rgba(255,255,255);
-        left: 230px;
-        width: 100%;
-        height: 100%;
-        padding: 15px;
-        color: #21618C;
-    }
-    .rightbar h1{
-        letter-spacing: 5px;
-        font-weight: normal;
-        color: black;
-    }
-    .form1{
-        position: absolute;
-        left: 0px;
-        padding: 15px;
-
-    }
-    .form1 select {
-        width: 1000px;
-        padding: 16px 20px;
-        border: none;
-        border-radius: 4px;
-        background-color: #f1f1f1;
-
-    }
-    .date1{
-        position: absolute;
-        left: 0px;
-        padding: 15px;
-        top: 240px;
-        font-weight: normal;
-
-    }
-    .date2{
-        position: absolute;
-        left: 500px;
-        padding: 15px;
-        top: 240px;
-        font-weight: normal;
-
-    }
-    .reason{
-        position: absolute;
-        left: 0px;
-        padding: 15px;
-        top: 300px;
-        font-weight: normal;
-
-    }
-    textarea {
-        width: 1000px;
-        height: 150px;
-        padding: 12px 20px;
-        box-sizing: border-box;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        background-color: #f8f8f8;
-        font-size: 16px;
-        resize: none;
-        font-family: Helvetica;
-        color: 	#C0C0C0;
-    }
-    .submit{
-        position: absolute;
-        left: 25px;
-        padding: 15px;
-        font-weight: normal;
-        top: 535px;
+                     </div>
 
 
-    }
-    input[type=submit] {
-        background-color: #4CAF50;
-        color: white;
-        padding: 14px 20px;
-        margin: 8px 0;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-    input[type=submit]:hover {
-        background-color: #45a049;
-    }
-
-    .submit input[type=submit] {
-        background-color: #4CAF50;
-        color: white;
-        padding: 14px 20px;
-        margin: 8px 0;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-    .submit input[type=submit]:hover {
-        background-color: #45a049;
-    }
-
-</style>
-<body>
-<div class="leftbar">
-    <p>{{i.firstname}} {{i.lastname}}</p>
-    <img src="{{i.image.url}}" width="170" height="170">
-    <p>{{i.employeeid}}</p>
+          </div>
 </div>
-<div class="rightbar">
-    <h1>LEAVE APPLICATION</h1>
-    <hr>
-    <div class="form1">
-        <label for="task">Leave Type: </label><br><br>
-        <form action="{% url 'leave_creation' %}" method="POST">
-            {% csrf_token %}
-            <select  name="leavetype">
-                <option value="sick">sick</option>
-                <option value="study">study Leave</option>
-                <option value="casual">Casual Leave</option>
-                <option value="emergency">emergency Leave</option>
-
-            </select>
-
-    </div>
-    <div class="date1">
-        <label for="Date">Start Date: </label>
-        <input type="date" name="startdate">
-    </div>
-    <div class="date2">
-        <label for="sreason">End Date: </label>
-        <input type="date" name="enddate">
-    </div>
-    <div class="reason">
-
-            <label for="sreason">Reason </label><br><br>
-            <textarea name="reason">Reason</textarea>
-    </div>
-
-    <div class="submit" >
-            <input type="submit" value="Submit">
-    </div>
-    <input type="hidden" name="department" value="{{ i.user.employee.get_department }}">
-
-    </form>
-</div>
-</body>
 {% endif %}
 {% endfor %}
-{% endblock content %}
+
+{% endblock %}

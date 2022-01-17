@@ -4,6 +4,7 @@ from Employee.models import Employee
 from django.contrib.auth.decorators import login_required
 from leave.models import leave
 from Resignation.models import Resignation
+from django.db.models import Q
 
 # Create your views here.
 
@@ -25,8 +26,8 @@ def Dashboard(request):
     #for department heads
 
     dep_leaves = leaves.filter(department=request.user.employee.get_department())
-    dep_pending_leaves = dep_leaves.filter(status="Pending")
-    dep_pending_leaves=dep_pending_leaves.filter()
+    dep_leaves = dep_leaves.filter(~Q(user=request.user))
+    dep_pending_leaves=dep_leaves.filter(status="Pending")
 
     context = {
         'employees': employees,
@@ -75,8 +76,15 @@ def Task_View(request):
 
 @login_required
 def Task(request):
+
     employees = Employee.objects.all()
+    employee=employees.filter(~Q(user=request.user))
+    dep_employees=employees.filter(department__department_name =request.user.employee.get_department())
+    dep_employees=dep_employees.filter(~Q(user=request.user))
+
     context = {
-        'employees': employees
+        'employees': employees,
+        "employee": employee,
+        "dep_employee": dep_employees
     }
     return render(request, 'Dashboard/Task.html', context)

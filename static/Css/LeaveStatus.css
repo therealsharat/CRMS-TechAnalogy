@@ -1,3 +1,10 @@
+ body{
+
+background-color: #d3d3d3;
+background-image: linear-gradient( #eeaeca, #94bbe9 80%);
+}
+
+
 .nav-item  a{
     font-family: Helvetica;
                 color: #21618D !important;
@@ -22,7 +29,7 @@
 
   margin-left:10%;
   margin-right:20%;
-  background-color: rgba(30,144,255,0.2) !important;
+  background: linear-gradient( #eeaeca, #94bbe9 80%) !important;
       box-shadow: 5px 5px 10px rgba(0,0,0,.4);
           border-radius: 1em;
           margin-bottom:5%;

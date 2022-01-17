@@ -1,13 +1,12 @@
-<!DOCTYPE html>
-<html lan="eng">
-{% load static %}
+{%  extends "Dashboard/Navbar.html" %}
+{% block Style %}
+    <link rel="stylesheet" type="text/css" href="/static/Css/login.css">
+    <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Tech Analogy Login </title>
-    <link rel="stylesheet" href={{content}} >
-</head>
+
+{% endblock %}
+
+{% block content %}
 <body>
 
 <div class="container">
@@ -20,15 +19,15 @@
         {% endfor %}
     {% endif %}
 </div>
+<div class="wrapper">
+    <div class="logo"> <img src="static/Employee/login_background.jpeg"> </div>
+    <div class="text-center mt-4 name"> Login  </div>
+    <form class="p-3 mt-3" action ="" method="POST">
+            {% csrf_token %}
 
-<form class="box" action ="" method="POST">
-    {% csrf_token %}
-    <h1>
-        Welcome!
-    </h1>
-    <input type="text" name="username" placeholder="Enter Unique Id" Id ="username">
-    <input type="password" name="password" placeholder="Enter password " Id ="password">
-    <input type="submit" name="" value="Sign in">
-</form>
+        <div class="form-field d-flex align-items-center"> <span class="far fa-user"></span> <input type="text" name="username"  placeholder="Username"> </div>
+        <div class="form-field d-flex align-items-center"> <span class="fas fa-key"></span> <input type="password" name="password" placeholder="Password"> </div> <button class="btn mt-3">Login</button>
+    </form>
+</div>
 </body>
-</html>
+{% endblock %}

@@ -12,38 +12,44 @@
 
 
 <header class="header">
- <nav class="navbar sticky-top w-auto navbar-expand-lg navbar-light " style= "background-color: rgba(30,144,255,0.2);">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="{% url 'Dashboard' %}">
-        <img src="/static/Dashboard/biglogo.png" alt="" width="180" height="55">
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"  aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+         <div class="navib">
+ <nav class="navbar sticky-top w-auto navbar-expand-lg navbar-light " >
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'Dashboard' %}">
+            <img src="/static/Dashboard/biglogo.png" alt="" width="180" height="55">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"  aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto gap-3">
-        <li class="nav-item">
-          <a class="nav-link " aria-current="page" href="{% url 'Personal' %}">Personal Details</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'Task' %}">Task Assignment</a>
-        </li>
-          {% if user.employee.get_role != "TechnicalHead" %}
-        <li class="nav-item">
-          <a class="nav-link" href=" {% url 'Leave' %} ">Leave Application</a>
-        </li>
-          <li class="nav-item">
-          <a class="nav-link" href="{% url 'resignation' %}">Resignation</a>
-        </li>
-          {% endif %}
-          <li class="nav-item">
-          <a class="nav-link active" href=" {% url 'Logout' %}">Logout</a>
-        </li>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto gap-3">
+            <li class="nav-item">
+              <a class="nav-link " aria-current="page" href="{% url 'Personal' %}">Personal Details</a>
+            </li>
+              {% if user.employee.get_role != "Executives" %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'Task' %}">Task Assignment</a>
+            </li>
+              {% endif %}
+              {% if user.employee.get_role != "TechnicalHead" %}
+            <li class="nav-item">
+              <a class="nav-link" href=" {% url 'Leave' %} ">Leave Application</a>
+            </li>
+              <li class="nav-item">
+              <a class="nav-link" href="{% url 'resignation' %}">Resignation</a>
+            </li>
+              {% endif %}
+              <li class="nav-item">
+              <a class="nav-link active" href=" {% url 'Logout' %}">Logout</a>
+            </li>
 
-      </ul>
-    </div>
-  </div>
+          </ul>
+             <hr>
+        </div>
+
+      </div>
+ </div>
 </nav>
 </header>
 
