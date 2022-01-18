@@ -1,6 +1,7 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from .forms import LeaveCreationForm
 from leave.models import *
+
 # Create your views here.
 def leave_creation(request):
     if request.method=="POST":
@@ -13,6 +14,7 @@ def leave_creation(request):
     else:
         form=LeaveCreationForm()
     return render(request,'Dashboard/Leave.html')
+
 def LeaveRequest(request):
     if request.method =="POST":
         id1 = request.POST.get("id")

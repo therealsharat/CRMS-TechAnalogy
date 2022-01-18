@@ -1,6 +1,8 @@
 from django import forms
 from .models import *
+
 CHOICES=(('sick','sick'),('casual','casual'),('emergency','emergency'),("study",'study'))
+
 class LeaveCreationForm(forms.ModelForm):
     startdate=forms.DateField()
     enddate=forms.DateField()
