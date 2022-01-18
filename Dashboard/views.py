@@ -67,24 +67,11 @@ def resignation(request):
     }
     return render(request, 'Dashboard/Resignation.html', context)
 
-def Task_View(request):
-    employees = Employee.objects.all()
-    context = {
-        'employees': employees
-    }
-    return render(request, 'Dashboard/Task_View.html', context)
-
 @login_required
 def Task(request):
 
     employees = Employee.objects.all()
-    employee=employees.filter(~Q(user=request.user))
-    dep_employees=employees.filter(department__department_name =request.user.employee.get_department())
-    dep_employees=dep_employees.filter(~Q(user=request.user))
-
     context = {
         'employees': employees,
-        "employee": employee,
-        "dep_employee": dep_employees
     }
     return render(request, 'Dashboard/Task.html', context)
