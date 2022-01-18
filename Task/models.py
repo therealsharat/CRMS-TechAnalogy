@@ -6,6 +6,6 @@ from django.contrib.auth.models import User
 
 # ENUMS
 
-# TASK MODEL
 
+# TASK MODEL
 
