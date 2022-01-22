@@ -6,7 +6,7 @@ from leave.models import *
 def leave_creation(request):
     if request.method=="POST":
         form=LeaveCreationForm(request.POST)
-
+        print(form)
         Leave=form.save(commit=False)
         Leave.user=request.user
         Leave.save()

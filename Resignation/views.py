@@ -10,6 +10,7 @@ from django.http import HttpResponse, Http404
 def resignation_creation(request):
     if request.method=='POST':
         form=ResigCreationForm(request.POST,request.FILES)
+        print(form)
         if form.is_valid():
             Resig=form.save(commit=False)
             Resig.user=request.user

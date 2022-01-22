@@ -14,7 +14,7 @@ for j in UserList:
 
 class TaskAssignForm(forms.ModelForm):
     users = forms.ChoiceField(choices = UserChoices, widget=forms.Select(attrs={'class': 'nice-select rounded'}), )
-    assign_date = forms.DateField()
+    assign_date = forms.CharField()
     deadline = forms.DateField
     task_title = forms.CharField(max_length=30)
     task_description = forms.CharField(max_length=255)

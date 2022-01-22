@@ -8,13 +8,12 @@
 {% endblock %}
 {% block content %}
 
-{% for i in employees %}
-{% if i.user == user %}
+
 <body>
 
 <!-- start of Code for Technical Head -->
 
-{% if i.get_role == "TechnicalHead" %}
+{% if employees.get_role == "TechnicalHead" %}
 <div class="row row-cols-1 row-cols-lg-4 g-3 g-lg-4" >
   <div class="col">
     <div class="card text-center " >
@@ -55,7 +54,7 @@
 
 <!--  start of code for Domain Head -->
 
-{% if i.get_role == "DomainHead" %}
+{% if employees.get_role == "DomainHead" %}
 <div class="row row-cols-1 row-cols-lg-4 g-3 g-lg-4" >
   <div class="col">
     <div class="card text-center">
@@ -112,7 +111,7 @@
 
 <!--start of  Code for Executives -->
 
-{% if i.get_role == "Executives" %}
+{% if employees.get_role == "Executives" %}
 <div class="row row-cols-1 row-cols-lg-4 g-3 g-lg-4" >
   <div class="col">
     <div class="card text-center">
@@ -148,6 +147,5 @@
 
 
 </body>
-{% endif %}
-{% endfor %}
+
 {% endblock content %}

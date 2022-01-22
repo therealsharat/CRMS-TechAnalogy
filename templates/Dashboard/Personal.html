@@ -8,8 +8,7 @@
 {% endblock %}
 
 {% block content %}
-{% for i in employees %}
-{% if i.user == user %}
+
 
 <body>
 <div class="personal">
@@ -22,7 +21,7 @@
                         </div>
                          <div class="col-md-4 ms-7">
                              <br>
-                            <img class="card-img" src="{{i.image.url}}" alt="Card image cap" >
+                            <img class="card-img" src="{{employees.image.url}}" alt="Card image cap" >
 
                         </div>
 
@@ -32,10 +31,10 @@
                          <div class="col-md ms-2">
                              <br>
                              <div class="name" style="color:white;font-size:25px;font-family: 'Mochiy Pop P One', sans-serif; text-align:center;">
-                                 {{i.get_name}}
+                                 {{employees.get_name}}
                              </div>
                              <div class="name" style="color:white;font-family: 'Mochiy Pop P One', sans-serif; text-align:center;">
-                                 {{i.get_role}}
+                                 {{employees.get_role}}
                              </div>
                              <div>                             <br><br><br><br><br><br><br>
                              </div>
@@ -57,13 +56,13 @@
                     <hr>
                     <br><br><br>
                     <div class="col-md-6 ">
-                        <div class="text"><strong>Email</strong>:<br>{{i.email}}
+                        <div class="text"><strong>Email</strong>:<br>{{employees.email}}
                         </div>
 
                     </div>
                     <div class="col-md-6 ps-5">
                         <div class="font-weight-bold"><strong>phone </strong>:<br>
-                            {{i.phoneNumber}}
+                            {{employees.phoneNumber}}
                         </div>
                     </div>
 
@@ -75,13 +74,13 @@
 
                     <div class="col-md-6 ">
                         <br>
-                        <div class="font-weight-bold"><strong>Employee Id </strong>:<br>{{i.employeeid}}
+                        <div class="font-weight-bold"><strong>Employee Id </strong>:<br>{{employees.employeeid}}
                         </div>
 
                     </div>
                     <div class="col-md-6 ps-5"><br>
                         <div class="font-weight-bold"><strong>Domain </strong> :<br>
-                            {{i.get_department}}
+                            {{employees.get_department}}
                         </div>
                     </div>
 
@@ -96,8 +95,5 @@
 
 	</div>
 </body>
-{% endif %}
-{% endfor %}
-
 
 {% endblock content %}

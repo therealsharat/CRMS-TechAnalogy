@@ -10,7 +10,7 @@ from django.db.models import Q
 
 @login_required
 def Dashboard(request):
-    employees = Employee.objects.all()
+    employees = request.user.employee
     resignations=Resignation.objects.all()
     pending_resignations=resignations.filter(status='Pending')
 
@@ -19,7 +19,6 @@ def Dashboard(request):
     pending_leaves = leaves.filter(status="Pending")
 
     # for user
-
     user_leaves=leaves.filter(user=request.user)
     user_pending_leaves=user_leaves.filter(status="Pending")
 
@@ -45,7 +44,7 @@ def Dashboard(request):
 
 @login_required
 def Personal(request):
-    employees = Employee.objects.all()
+    employees = request.user.employee
     context = {
         'employees': employees
     }
@@ -53,7 +52,7 @@ def Personal(request):
 
 @login_required
 def Leave(request):
-    employees = Employee.objects.all()
+    employees = request.user.employee
     context = {
         'employees': employees
     }
@@ -61,7 +60,7 @@ def Leave(request):
 
 @login_required
 def resignation(request):
-    employees = Employee.objects.all()
+    employees = request.user.employee
     context = {
         'employees': employees
     }
@@ -69,9 +68,10 @@ def resignation(request):
 
 @login_required
 def Task(request):
-    employees = Employee.objects.all()
-    employee = employees.filter(~Q(user=request.user))
-    dep_employees = employees.filter(department__department_name=request.user.employee.get_department())
+    employees = request.user.employee
+    employee=Employee.objects.all()
+    employee = employee.filter(~Q(user=request.user))
+    dep_employees = employee.filter(department__department_name=request.user.employee.get_department())
     dep_employees = dep_employees.filter(~Q(user=request.user))
 
     context = {

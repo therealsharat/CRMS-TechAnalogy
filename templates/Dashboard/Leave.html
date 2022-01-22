@@ -8,8 +8,7 @@
 {% endblock %}
 
 {% block content %}
-{% for i in  employees %}
-{% if i.user ==  user %}
+
 <div class="personal">
           <div class="container-fluid ">
                 <div class="row align-items-center">
@@ -28,7 +27,7 @@
                                                     <div class="form-group " style="width:100%;">
                                                         <label> Leavetype </label>
                                                         <select  name="leavetype" class="form-control" >
-                                                                        <option value="sick">sick</option>
+                                                                        <option value="sick">sick Leave</option>
                                                                         <option value="study">study Leave</option>
                                                                         <option value="casual">Casual Leave</option>
                                                                         <option value="emergency">emergency Leave</option>
@@ -48,7 +47,10 @@
                                                         <textarea class="form-control " name="reason" ></textarea>
                                                     </div>
                                                     <div>
-                                                        <input type="hidden" name="department" value="{{ i.user.employee.get_department }}">
+                                                        <input type="hidden" name="department" value="{{ employees.get_department }}">
+                                                    </div>
+                                                    <div>
+                                                        <input type="hidden" name="applied_date" id="A_Date">
                                                     </div>
 
                                                 <button class="btn signup">Submit</button>
@@ -64,7 +66,12 @@
 
           </div>
 </div>
-{% endif %}
-{% endfor %}
+</div>
+
+ <script type="text/javascript">
+    var d = new Date();
+    d=d.toISOString().substring(0,10);
+    document.getElementById("A_Date").value = d;
+  </script>
 
 {% endblock %}
