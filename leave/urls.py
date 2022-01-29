@@ -1,10 +1,6 @@
-from django.contrib import admin
 from django.urls import include, path
-from Employee import views as employee_views
-from django.conf import settings
-from django.conf.urls.static import static
 from leave import views as leave_views
-from Resignation import views as resig_views
+
 
 from django.contrib.auth import views as auth_views
 

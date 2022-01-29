@@ -29,7 +29,8 @@ urlpatterns = [
     path('dashboard/', include('Dashboard.urls')),
     path('register/', employee_views.Register, name='register' ),
     path('leave/',include('leave.urls')),
-    path('resignation/', include('Resignation.urls'))
+    path('resignation/', include('Resignation.urls')),
+    path('task/',include("Task.urls"))
 
 ]
 

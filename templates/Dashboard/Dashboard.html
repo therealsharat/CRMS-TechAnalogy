@@ -4,7 +4,7 @@
     <title>Dashboard</title>
 </head>
 {% block Style %}
-    <link rel="stylesheet" type="text/css" href="/static/Css/Dashboard.css">
+<link rel="stylesheet" type="text/css" href="/static/Css/Dashboard.css">
 {% endblock %}
 {% block content %}
 
@@ -14,38 +14,36 @@
 <!-- start of Code for Technical Head -->
 
 {% if employees.get_role == "TechnicalHead" %}
-<div class="row row-cols-1 row-cols-lg-4 g-3 g-lg-4" >
-  <div class="col">
-    <div class="card text-center " >
+<div class="row row-cols-1 row-cols-lg-4 g-3 g-lg-4">
+    <div class="col">
+        <div class="card text-center ">
 
-      <div class="card-body">
-      <a href="{% url 'leave_request' %}" class="btn btn-primary stretched-link"></a>
-        <p class="card-text">Leave Requests</p>
-        <p class="card-text1">Total requests: {{leaves}}
-        <br> Pending Leaves : {{pending_leaves}}</p>
-      </div>
+            <div class="card-body">
+                <a href="{% url 'leave_request' %}" class="btn btn-primary stretched-link"></a>
+                <p class="card-text">Leave Requests</p>
+                <p class="card-text1">Total requests: {{leaves}}
+                    <br> Pending Leaves : {{pending_leaves}}</p>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="col">
-    <div class="card text-center">
-      <div class="card-body ">
-        <a href="{% url 'Resignation_request' %}" class="btn btn-primary stretched-link"></a>
-        <p class="card-text">Resignation Requests</p>
-        <p class="card-text1">Resignations applied: {{resignations}}
-        <br> Pending requests : {{pending_resignations}}</p>
-
-      </div>
-
+    <div class="col">
+        <div class="card text-center">
+            <div class="card-body ">
+                <a href="{% url 'Resignation_request' %}" class="btn btn-primary stretched-link"></a>
+                <p class="card-text">Resignation Requests</p>
+                <p class="card-text1">Resignations applied: {{resignations}}
+                    <br> Pending requests : {{pending_resignations}}</p>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="col">
-    <div class="card text-center">
-      <div class="card-body ">
-        <a href="#" class="btn btn-primary stretched-link"></a>
-        <p class="card-text">Task-assigned</p>
-      </div>
+    <div class="col">
+        <div class="card text-center">
+            <div class="card-body ">
+                <a href="{% url 'task_assigned' %}" class="btn btn-primary stretched-link"></a>
+                <p class="card-text">Task-assigned</p>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 {% endif %}
 
@@ -55,96 +53,81 @@
 <!--  start of code for Domain Head -->
 
 {% if employees.get_role == "DomainHead" %}
-<div class="row row-cols-1 row-cols-lg-4 g-3 g-lg-4" >
-  <div class="col">
-    <div class="card text-center">
-      <div class="card-body">
-        <a href="{% url 'leave_status' %}" class="btn btn-primary stretched-link"></a>
+<div class="row row-cols-1 row-cols-lg-4 g-3 g-lg-4">
+    <div class="col">
+        <div class="card text-center">
+            <div class="card-body">
+                <a href="{% url 'leave_status' %}" class="btn btn-primary stretched-link"></a>
                 <p class="card-text">Leave Applications
                 </p>
                 <p class="card-text1">Leaves applied: {{user_leaves}}
-                <br> Pending Leaves : {{user_pending_leaves}}</p>
-      </div>
+                    <br> Pending Leaves : {{user_pending_leaves}}</p>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="col">
-    <div class="card text-center ">
-      <div class="card-body">
-      <a href="{% url 'leave_request' %}" class="btn btn-primary stretched-link"></a>
-        <p class="card-text">Leave Requests</p>
-         <p class="card-text1">Leave requests: {{dom_leaves}}
-                <br> Pending requests : {{dom_pending_leaves}}</p>
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card text-center">
-      <div class="card-body ">
-        <p class="card-text">Task-assigned</p>
-
-      </div>
-
-    </div>
-  </div>
     <div class="col">
-    <div class="card text-center">
-      <div class="card-body ">
-        <p class="card-text">Tasks</p>
-
-      </div>
-
+        <div class="card text-center ">
+            <div class="card-body">
+                <a href="{% url 'leave_request' %}" class="btn btn-primary stretched-link"></a>
+                <p class="card-text">Leave Requests</p>
+                <p class="card-text1">Leave requests: {{dom_leaves}}
+                    <br> Pending requests : {{dom_pending_leaves}}</p>
+            </div>
+        </div>
     </div>
-  </div>
-   <div class="col">
-    <div class="card text-center">
-      <div class="card-body">
-        <a href="{% url 'Resignation_status' %}" class="btn btn-primary stretched-link"></a>
-          <p class="card-text">Resignation Application</p>
-      </div>
+    <div class="col">
+        <div class="card text-center">
+            <div class="card-body ">
+                <a href="{% url 'task_assigned' %}" class="btn btn-primary stretched-link"></a>
+
+                <p class="card-text">Task-assigned</p>
+
+            </div>
+
+        </div>
     </div>
-  </div>
+    <div class="col">
+        <div class="card text-center">
+            <div class="card-body ">
+                <a href="{% url 'task_status' %}" class="btn btn-primary stretched-link"></a>
+                <p class="card-text">Tasks</p>
+
+            </div>
+
+        </div>
+    </div>
 </div>
 {% endif %}
-
 <!--  end of code for Domain Head -->
 
 
 <!--start of  Code for Executives -->
 
 {% if employees.get_role == "Executives" %}
-<div class="row row-cols-1 row-cols-lg-4 g-3 g-lg-4" >
-  <div class="col">
-    <div class="card text-center">
-      <div class="card-body">
-        <a href="{% url 'leave_status' %}" class="btn btn-primary stretched-link"></a>
+<div class="row row-cols-1 row-cols-lg-4 g-3 g-lg-4">
+    <div class="col">
+        <div class="card text-center">
+            <div class="card-body">
+                <a href="{% url 'leave_status' %}" class="btn btn-primary stretched-link"></a>
                 <p class="card-text">Leave Applications</p>
 
-      </div>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="col">
-    <div class="card text-center">
-      <div class="card-body ">
-        <p class="card-text">Tasks</p>
+    <div class="col">
+        <div class="card text-center">
+            <div class="card-body ">
+                <a href="{% url 'task_status' %}" class="btn btn-primary stretched-link"></a>
+                <p class="card-text">Tasks</p>
 
-      </div>
+            </div>
 
+        </div>
     </div>
-  </div>
-   <div class="col">
-    <div class="card text-center">
-      <div class="card-body">
-        <a href="{% url 'Resignation_status' %}" class="btn btn-primary stretched-link"></a>
-          <p class="card-text">Resignation Application</p>
-      </div>
-    </div>
-  </div>
 </div>
 {% endif %}
 
 <!-- end of  Code for Executives -->
-
-
 
 </body>
 

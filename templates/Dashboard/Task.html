@@ -22,24 +22,19 @@
                                         <div class="col-md-12">
                                             <div class="form-container">
                                                 <h3 class="title">Task assignment</h3>
-                                                <form class="form-horizontal" action="{% url 'leave_creation' %}" method="POST">
+                                                <form class="form-horizontal" action="{% url 'task_creation' %}" enctype="multipart/form-data" method="POST">
                                                     {% csrf_token %}
-                                                    <div class="form-group">
-                                                        <label>Assigned By</label>
-                                                        <select  name="Assigned By" class="form-control" >
-                                                            <option value="{{employees.id}}"> {{employees.get_name}} </option>
-                                                        </select>
-                                                    </div>
-                                                     <div class="form-group">
-                                                        <label>Email</label>
-                                                        <input type="text" class="form-control"  onkeydown="return false" value =" {{employees.email}}"name="startdate">
-                                                    </div>
+
+
                                                      <div class="form-group " >
                                                         <label> Assigned To</label>
-                                                        <select  name="Assigned To" class="form-control" >
+                                                        <select  name="assigned_to" class="form-control" >
                                                             {% if employees.get_role == "TechnicalHead" %}
+
                                                              {% for j in employee %}
+                                                                {% if j.get_role == "DomainHead" %}
                                                                 <option value="{{j.id}}">{{j.get_name}}</option>
+                                                                {% endif %}
                                                              {% endfor %}
 
                                                              {% else  %}
@@ -50,32 +45,31 @@
                                                              {% endif %}
                                                         </select>
                                                     </div>
-
-                                                     <div class="form-group">
-                                                        <label>Email</label>
-                                                        <input type="text" class="form-control"  name="startdate">
+                                                     <div class="form-group" >
+                                                        <label>Task title</label>
+                                                        <input type='text' class="form-control " name="task_title" > </input>
                                                     </div>
 
 
                                                      <div class="form-group" style="width:100%;" >
                                                         <label>Task Description</label>
-                                                        <textarea class="form-control " name="Description" ></textarea>
+                                                        <textarea class="form-control " name="task_description" ></textarea>
                                                     </div>
-                                                     <div class="form-group" style="width:100%;">
+                                                     <div class="form-group" >
                                                         <label>Attachment</label>
-                                                        <input type="file" class="form-control"  name="attachment">
+                                                        <input type='File' class="form-control" name="attachment" > </input>
                                                     </div>
 
 
+                                                    <div></div>
                                                     <div class="form-group">
                                                         <label>Dead Line</label>
-                                                        <input type="date" class="form-control" name="Deadline">
+                                                        <input type="date" class="form-control" name="deadline">
                                                     </div>
 
                                                     <div>
-                                                        <input type="hidden" name="department" value="{{ i.user.employee.get_department }}">
+                                                          <input type="hidden" name="assign_date" id="A_Date">
                                                     </div>
-
                                                 <button class="btn signup">Submit</button>
                                                 </form>
                                             </div>
@@ -91,5 +85,9 @@
 </div>
 </div>
 {% endif %}
-
+ <script type="text/javascript">
+    var d = new Date();
+    d=d.toISOString().substring(0,10);
+    document.getElementById("A_Date").value = d;
+  </script>
 {% endblock %}

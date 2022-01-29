@@ -13,7 +13,6 @@ class Resignation(models.Model):
     applied_date=models.DateField(default=timezone.now)
     Termination_date=models.DateField()
     reason=models.CharField(max_length=150)
-    attachment=models.FileField(upload_to='resignation')
     is_approved=models.BooleanField(default=False)
     status=models.CharField(choices=STATUS_TYPE,max_length=25,default='Pending')
 

@@ -1,7 +1,6 @@
  body{
 
-background-color: #d3d3d3;
-background-image: linear-gradient( #eeaeca, #94bbe9 80%);
+background-color: #748ba3;
 }
 
 
@@ -21,7 +20,7 @@ background-image: linear-gradient( #eeaeca, #94bbe9 80%);
     }
 
  .navbar{
-    margin-bottom: 8%;
+    margin-bottom: 5%;
 
     }
 

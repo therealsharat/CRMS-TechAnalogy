@@ -1,0 +1,37 @@
+ {%  extends "Dashboard/Navbar.html" %}
+{% block Style %}
+    <link rel="stylesheet" type="text/css" href="/static/Css/LeaveRequest.css">
+{% endblock %}
+
+ {% block content %}
+ {% for i in my_tasks %}
+  <div class="card">
+    <div class="card-body">
+      <p class="card-text"> <br>
+          <strong>Assigned Date</strong> : {{i.assign_date}}
+          <br><br>
+        <strong>Deadline</strong>: {{i.deadline}} <br> <br>
+         <strong>task_title</strong>: {{i.task_title}} <br> <br>
+          <strong> Description </strong>: {{i.task_description}}
+          <br>  <br>  <strong>status</strong> : {{i.status}}
+        {% if i.status != "Completed" %}}
+          <form action="{% url 'task_submission' %}"  enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+         <div  >
+             <label><strong>Attachment :</strong></label>
+             <input type='File'  name="attachment" > </input>
+         </div>
+             <input type="hidden" name="user" value={{i.user.id}}>
+             <input type="hidden" name="task" value={{i.id}}>
+
+        <br>
+        <div>
+          <strong>Submit</strong>: <button type="submit"   style="background:transparent;color:black;">Click To submit</button>
+        </div>
+          </form>
+        {% endif %}
+      </p>
+    </div>
+  </div>
+ {% endfor %}
+{% endblock %}

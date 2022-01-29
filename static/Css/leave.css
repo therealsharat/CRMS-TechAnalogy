@@ -1,7 +1,6 @@
 body{
 
 background-color: #637081;
-background-image: linear-gradient(315deg, #637081 0%, #7c98b3 74%);
 }
     .nav-item  a{
     font-family: Helvetica;
@@ -18,7 +17,7 @@ background-image: linear-gradient(315deg, #637081 0%, #7c98b3 74%);
         padding: 0px 0px;
     }
     .navbar{
-    margin-bottom: 8%;
+    margin-bottom: 5%;
     }
 
 .register-left{

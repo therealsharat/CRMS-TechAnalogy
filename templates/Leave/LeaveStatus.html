@@ -1,20 +1,20 @@
- {%  extends "Dashboard/Navbar.html" %}
+{%  extends "Dashboard/Navbar.html" %}
 {% block Style %}
-    <link rel="stylesheet" type="text/css" href="/static/Css/LeaveRequest.css">
+<link rel="stylesheet" type="text/css" href="/static/Css/LeaveRequest.css">
 {% endblock %}
 
- {% block content %}
- {% for i in my_leaves %}
-  <div class="card">
+{% block content %}
+{% for i in my_leaves %}
+<div class="card">
     <div class="card-body">
-      <p class="card-text"> <br>
-          <strong>Applied Date</strong> : {{i.applied_date}}
-          <br><br>
-        <strong>Start Date</strong>: {{i.startdate}} <br> <br> <strong> End Date </strong>: {{i.enddate}}<br> <br>
-         <strong>Leave Type</strong>: {{i.leavetype}} <br> <br> <strong> Reason </strong>: {{i.reason}}
-          <br>  <br>  <strong>status</strong> : {{i.status}}
-      </p>
+        <p class="card-text"><br>
+            <strong>Applied Date</strong> : {{i.applied_date}}
+            <br><br>
+            <strong>Start Date</strong>: {{i.startdate}} <br> <br> <strong> End Date </strong>: {{i.enddate}}<br> <br>
+            <strong>Leave Type</strong>: {{i.leavetype}} <br> <br> <strong> Reason </strong>: {{i.reason}}
+            <br> <br> <strong>status</strong> : {{i.status}}
+        </p>
     </div>
-  </div>
- {% endfor %}
+</div>
+{% endfor %}
 {% endblock %}

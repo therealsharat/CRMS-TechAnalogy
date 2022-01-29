@@ -10,9 +10,7 @@ urlpatterns = [
 
 
     path('Resignation_creation', views.resignation_creation, name='Resignation_creation'),
-    path('Resignation_status',views.resignation_status,name='Resignation_status'),
     path('Resignation_request',views.resignation_request,name='Resignation_request'),
-    path("file_download",views.FileDownload,name="file_download")
 
 ]
 

@@ -1,4 +1,10 @@
 {%  extends "Dashboard/Navbar.html" %}
+{% block Style %}
+<link rel="stylesheet" type="text/css" href="/static/Css/personal.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mochiy+Pop+P+One ">
+{% endblock %}
+
 <head>
     <meta charset="UTF-8">
     <title>Logout</title>
@@ -7,7 +13,7 @@
     <h2>You have successfully Logged Out</h2>
     <div class="border-top pt-3">
         <small class="text-muted">
-            <a href="{% url 'Login' %}">Log In Again</a>
+            <a href="{% url 'Login' %}" style="color:white;">Log In Again</a>
         </small>
     </div>
 {% endblock content %}

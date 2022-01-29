@@ -1,0 +1,22 @@
+ {%  extends "Dashboard/Navbar.html" %}
+{% block Style %}
+    <link rel="stylesheet" type="text/css" href="/static/Css/LeaveRequest.css">
+{% endblock %}
+
+ {% block content %}
+ {% for i in tasks %}
+  <div class="card">
+    <div class="card-body">
+      <p class="card-text"> <br>
+          <strong>Assigned Date</strong> : {{i.assign_date}}
+          <br><br>
+        <strong>Deadline</strong>: {{i.deadline}} <br> <br>
+         <strong>task_title</strong>: {{i.task_title}} <br> <br>
+          <strong> Description </strong>: {{i.task_description}}
+          <br>  <br>  <strong>status</strong> : {{i.status}}
+
+      </p>
+    </div>
+  </div>
+ {% endfor %}
+{% endblock %}

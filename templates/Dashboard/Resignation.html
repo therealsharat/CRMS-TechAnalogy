@@ -10,60 +10,61 @@
 {% block content %}
 
 <div class="personal">
-  <div class="container-fluid ">
+    <div class="container-fluid ">
         <div class="row align-items-center">
             <div class="col-md-0  mt-0 ">
-              </div>
+            </div>
 
             <div class="col-md-12 mt-0">
                 <div class="form-bg">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-container">
-                                        <h3 class="title">Resignation </h3>
-                                        <form class="form-horizontal" action="{% url 'Resignation_creation' %}"   enctype="multipart/form-data" method="POST">
-                                            {% csrf_token %}
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-container">
+                                    <h3 class="title">Resignation </h3>
+                                    <form class="form-horizontal" action="{% url 'Resignation_creation' %}" enctype="multipart/form-data" method="POST">
+                                        {% csrf_token %}
 
-                                            <div></div>
-                                            <div class="form-group">
-                                                <label>Termination date</label>
-                                                <input type="date" class="form-control"  name="Termination_date">
-                                            </div>
+                                        <div></div>
+                                        <div class="form-group">
+                                            <label>Termination date</label>
+                                            <input type="date" class="form-control" name="Termination_date">
+                                        </div>
 
-                                            <div class="form-group" style="width:100%;">
-                                                <label>Reason</label>
-                                                <textarea class="form-control " style="height:50 !important;" name="reason" ></textarea>
-                                            </div>
+                                        <div class="form-group" style="width:100%;">
+                                            <label>Reason</label>
+                                            <textarea class="form-control " style="height:50px !important;"
+                                                      name="reason"></textarea>
+                                        </div>
 
-                                            <div>
-                                                <input type="hidden" name="applied_date" id="A_Date">
-                                            </div>
+                                        <div>
+                                            <input type="hidden" name="applied_date" id="A_Date">
+                                        </div>
 
 
-                                            <div class="form-group" style="width:100%;">
-                                                <label>Resignation Letter</label>
-                                                <input class="form-control" type="file" name="attachment">
-                                            </div>
+                                        <div class="form-group" style="width:100%;">
+                                            <label>Resignation Letter</label>
+                                            <input type="file" class="form-control"  name="attachment">
+                                        </div>
 
                                         <button class="btn signup">Submit</button>
-                                        </form>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
 
-             </div>
+            </div>
 
 
-  </div>
+        </div>
+    </div>
 </div>
-</div>
 
-   <script type="text/javascript">
+<script type="text/javascript">
     var d = new Date();
-    d=d.toISOString().substring(0,10);
+    d = d.toISOString().substring(0, 10);
     document.getElementById("A_Date").value = d;
-  </script>
+</script>
 {% endblock %}

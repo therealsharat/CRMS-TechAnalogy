@@ -1,7 +1,7 @@
  body{
 
-background-color: #d3d3d3;
-background-image:  linear-gradient(315deg, #637081 0%, #7c98b3 74%);
+background-color: #637081;
+
 }
 
 .nav-item  a{
@@ -42,9 +42,10 @@ padding-top:5%;
  }
 
    @media (max-width: 770px){
-           .left .col-md-6{padding-left:1% !important; font-size:20px; padding-bottom:5%;
+           .left .col-md-6{padding-left:1% !important; font-size:20px; padding-bottom:5%;}
+            .left .col-md-5{padding-left:1% !important; font-size:20px;}
 
-           }
+
 
            br{
            display:none}
