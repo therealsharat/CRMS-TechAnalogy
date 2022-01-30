@@ -49,6 +49,8 @@ def folder(request):
         return "1CgxO4UnYUyA1yXuWloc9xv6bq8YfiwCA"
     elif (request.user.employee.get_department() == "TechnicalManagement"):
         return "1AJ5gPeqeGlx8glmydv3Lz5jLBoeXabrj"
+    elif (request.user.employee.get_department() =="Design"):
+    	return "1mqWELsUw1DuWT1cKpH0j-Lqk8hQ-c7Oi"
 
 
 def task_status(request):
@@ -98,6 +100,9 @@ def folder_sub(user):
         return "1sfnNIad7dAV2PIyFQx5GUBwMcru8Ddg0"
     elif (user.employee.get_department() == "TechnicalManagement"):
         return "1-nCj91IzB0yJvZmhccwzMh0VsSXXYXN_"
+    elif (user.employee.get_department() =="Design"):
+        return  "1dDcENPaqR0p9tG_v81pOhVWJPE54Ktfw"
+
 
 
 def task_assigned(request):

@@ -25,9 +25,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '-3^rgn**pegapznh4^p)_xcj2e6d-8=iglx5--f99$+y_$h3*t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['13.127.80.9','ec2-13-127-80-9.ap-south-1.compute.amazonaws.com']
 
 
 # Application definition
@@ -125,15 +125,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_ROOT=os.path.join(BASE_DIR,'static')
+STATIC_URL = 'static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+MEDIA_URL = 'media/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
-]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
