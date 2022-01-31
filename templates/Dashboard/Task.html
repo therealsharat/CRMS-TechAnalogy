@@ -33,13 +33,13 @@
 
                                                              {% for j in employee %}
                                                                 {% if j.get_role == "DomainHead" %}
-                                                                <option value="{{j.id}}">{{j.get_name}}</option>
+                                                                <option value="{{j.user.id}}">{{j.get_name}}</option>
                                                                 {% endif %}
                                                              {% endfor %}
 
                                                              {% else  %}
                                                              {% for j in dep_employee %}
-                                                               <option value="{{j.id}}">  {{j.get_name}}  </option>
+                                                               <option value="{{j.user.id}}">  {{j.get_name}}  </option>
                                                              {% endfor %}
 
                                                              {% endif %}
