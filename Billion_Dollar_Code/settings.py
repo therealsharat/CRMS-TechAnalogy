@@ -16,8 +16,8 @@ import environ
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import Resignation.apps
 env=environ.Env()
-environ.Env.read_env()
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 
 # Quick-start development settings - unsuitable for production
@@ -29,7 +29,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [env('ALLOWED_HOST_1'),env('ALLOWED_HOST_2')]
+ALLOWED_HOSTS = [env('ALLOWED_HOST_1')]
 
 
 # Application definition
