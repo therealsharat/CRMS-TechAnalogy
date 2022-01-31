@@ -13,7 +13,7 @@
 
 <!-- start of Code for Technical Head -->
 
-{% if employees.get_role == "TechnicalHead" %}
+{% if employees.get_role == "TechnicalHead"  %}
 <div class="row row-cols-1 row-cols-lg-4 g-3 g-lg-4">
     <div class="col">
         <div class="card text-center ">
@@ -48,6 +48,47 @@
 {% endif %}
 
 <!-- end of Code for Technical Head -->
+
+
+{% if employees.get_role ==  "TechnicalSupervisor" %}
+<div class="row row-cols-1 row-cols-lg-4 g-3 g-lg-4">
+   <div class="col">
+        <div class="card text-center">
+            <div class="card-body">
+                <a href="{% url 'leave_status' %}" class="btn btn-primary stretched-link"></a>
+                <p class="card-text">Leave Applications
+                </p>
+                <p class="card-text1">Leaves applied: {{user_leaves}}
+                    <br> Pending Leaves : {{user_pending_leaves}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card text-center">
+            <div class="card-body ">
+                <a href="{% url 'task_assigned' %}" class="btn btn-primary stretched-link"></a>
+
+                <p class="card-text">Task-assigned</p>
+
+            </div>
+
+        </div>
+    </div>
+     <div class="col">
+        <div class="card text-center">
+            <div class="card-body ">
+                <a href="{% url 'task_status' %}" class="btn btn-primary stretched-link"></a>
+                <p class="card-text">Tasks</p>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- end of Code for Technical Head -->
+
 
 
 <!--  start of code for Domain Head -->

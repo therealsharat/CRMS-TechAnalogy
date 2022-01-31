@@ -26,4 +26,7 @@ class Task (models.Model):
     def close_task(self):
         self.status="Completed"
         self.save()
+    def get_assigned_to(self):
+        return User.objects.get(pk=self.assigned_to)
+
 

@@ -10,23 +10,24 @@ from .models import Task
 # Create your views here.
 
 def task_creation(request):
-    if request.method == "POST" and 'attachment' in request.FILES:
-        file = request.FILES['attachment']
+    if request.method == "POST":
         form = TaskAssignForm(request.POST)
-        service = Create_Service()
         username = User.objects.get(pk=request.POST.get("assigned_to")).username
         folder_id = folder(request)
-        media = MediaFileUpload(file.temporary_file_path())
-        file_metadata = {
-            'name': '{0}-{1}'.format(username, request.POST.get("task_title")),
-            'parents': [folder_id]
-        }
-        service.files().create(
-            body=file_metadata,
-            media_body=media
+        if 'attachment' in request.FILES:
+            service = Create_Service()
+            file = request.FILES['attachment']
+            media = MediaFileUpload(file.temporary_file_path())
+            file_metadata = {
+                'name': '{0}-{1}'.format(username, request.POST.get("task_title")),
+                'parents': [folder_id]
+            }
+            service.files().create(
+                body=file_metadata,
+                media_body=media
 
-        ).execute()
-        file.close()
+            ).execute()
+            file.close()
         Leave = form.save(commit=False)
         Leave.user = request.user
         Leave.save()
@@ -38,7 +39,16 @@ def task_creation(request):
 
 def folder(request):
     if request.user.employee.get_role() == "TechnicalHead":
-        return "1Li16l6YCbNRooyPb52oYry0IGjT2qiUE"
+        if User.objects.get(pk=request.POST.get("assigned_to")).employee.get_role() == "DomainHead" or "TechnicalSupervisor":
+            return "1Li16l6YCbNRooyPb52oYry0IGjT2qiUE"
+        else:
+            return "1gV5Huee4E3vAL0hBDhg78qUeyS2ANhHf"
+    if request.user.employee.get_role() == "TechnicalSupervisor":
+        if User.objects.get(pk=request.POST.get("assigned_to")).employee.get_role() == "DomainHead":
+            return "1IQIU2KKVWX6bghZmbM_SKyBPc5yYvKZ6"
+        else:
+            return "1lK3MnKs04B_AKyivskZp5ivTaHQJi-34"
+
     elif (request.user.employee.get_department() == "IoT"):
         return "1n8hUWAclWFpy-3dU1gHdEcsdWBdOrHPC"
     elif (request.user.employee.get_department() == "Mechanical"):
@@ -66,30 +76,33 @@ def task_status(request):
 
 
 def task_submission(request):
-    sumbmission = request.FILES['attachment']
-    user = User.objects.get(pk=request.POST.get("user"))
-    service = Create_Service()
-    task = Task.objects.get(pk=request.POST.get("task"))
-    folder_id = folder_sub(user)
-    media = MediaFileUpload(sumbmission.temporary_file_path())
-    file_metadata = {
-        'name': '{0} -{1}'.format(task.task_title, request.user),
-        'parents': [folder_id]
-    }
-    service.files().create(
-        body=file_metadata,
-        media_body=media
+    if "attachment" in request.FILES:
+        sumbmission = request.FILES['attachment']
+        user = User.objects.get(pk=request.POST.get("user"))
+        service = Create_Service()
+        task = Task.objects.get(pk=request.POST.get("task"))
+        folder_id = folder_sub(user)
+        media = MediaFileUpload(sumbmission.temporary_file_path())
+        file_metadata = {
+            'name': '{0} -{1}'.format(task.task_title, request.user),
+            'parents': [folder_id]
+        }
+        service.files().create(
+            body=file_metadata,
+            media_body=media
 
-    ).execute()
+        ).execute()
+        sumbmission.close()
     task = Task.objects.get(pk=request.POST.get("task"))
     task.close_task()
-    sumbmission.close()
     return redirect('/task/task_status/')
 
 
 def folder_sub(user):
     if user.employee.get_role() == "TechnicalHead":
         return "1G57kvul0L8BpKJPz-xpzOak8o-QoSyyY"
+    elif (user.employee.get_role() == "TechnicalSupervisor"):
+        return "12iaitDku5addx9bpq0Hm4GvkvnSNL6yA"
     elif (user.employee.get_department() == "IoT"):
         return "1rXp39nTMDZF1cLGrCYp539-G_6lJ_3Ny"
     elif (user.employee.get_department() == "Mechanical"):
@@ -105,10 +118,13 @@ def folder_sub(user):
 
 
 
+
+
+
 def task_assigned(request):
     tasks = Task.objects.all()
     assigned_tasks = tasks.filter(user=request.user)
-    my_tasks = reversed(list(assigned_tasks))
+    assigned_tasks = reversed(list(assigned_tasks))
     context = {
         "tasks": assigned_tasks
 
