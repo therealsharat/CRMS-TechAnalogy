@@ -29,7 +29,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [env('ALLOWED_HOST_1')]
+ALLOWED_HOSTS = [env('ALLOWED_HOST_1'),'.tech-analogy.engineer',env('ALLOWED_HOST_2')]
 
 
 # Application definition
