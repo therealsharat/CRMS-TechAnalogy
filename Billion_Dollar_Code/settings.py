@@ -11,10 +11,12 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import environ
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import Resignation.apps
-
+env=environ.Env()
+environ.Env.read_env()
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -22,12 +24,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '-3^rgn**pegapznh4^p)_xcj2e6d-8=iglx5--f99$+y_$h3*t'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['13.127.80.9','ec2-13-127-80-9.ap-south-1.compute.amazonaws.com']
+ALLOWED_HOSTS = [env('ALLOWED_HOST_1'),env('ALLOWED_HOST_2')]
 
 
 # Application definition
@@ -83,8 +85,15 @@ WSGI_APPLICATION = 'Billion_Dollar_Code.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': env('DATABASE_NAME'),
+        'USER': env('DATABASE_USER'),
+        'PASSWORD': env('DATABASE_PASSWORD'),
+        'HOST': env('DATABASE_HOST'),
+        'PORT': '3306',
+
+
+
     }
 }
 
