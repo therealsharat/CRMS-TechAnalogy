@@ -35,16 +35,18 @@
                                                                 <option value="{{j.user.id}}">{{j.get_name}}</option>
                                                              {% endfor %}
 
-                                                            {% elif employees.get_role == "TechnicalHead"  %}
+                                                            {% elif employees.get_role == "TechnicalSupervisor"  %}
                                                              {% for j in employee %}
                                                                 <option value="{{j.user.id}}">{{j.get_name}}</option>
                                                              {% endfor %}
 
 
                                                              {% else  %}
-                                                             {% for j in dep_employee %}
+                                                             {% for j in employee %}
+								{% if j.get_role != "TechnicalHead" %}
                                                                <option value="{{j.user.id}}">  {{j.get_name}}  </option>
-                                                             {% endfor %}
+                                                              {% endif %}
+								  {% endfor %}
 
                                                              {% endif %}
                                                         </select>
