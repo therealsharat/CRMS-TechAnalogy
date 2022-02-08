@@ -5,6 +5,7 @@ from drive import Create_Service
 from googleapiclient.http import MediaFileUpload, MediaIoBaseDownload
 from django.contrib.auth.models import User
 from .models import Task
+from django.core.mail import send_mail
 
 
 # Create your views here.
@@ -13,6 +14,7 @@ def task_creation(request):
     if request.method == "POST":
         form = TaskAssignForm(request.POST)
         username = User.objects.get(pk=request.POST.get("assigned_to")).username
+        user=User.objects.get(pk=request.POST.get("assigned_to"))
         folder_id = folder(request)
         if 'attachment' in request.FILES:
             service = Create_Service()
@@ -22,15 +24,22 @@ def task_creation(request):
                 'name': '{0}-{1}'.format(username, request.POST.get("task_title")),
                 'parents': [folder_id]
             }
-            service.files().create(
+            res=service.files().create(
                 body=file_metadata,
                 media_body=media
 
             ).execute()
             file.close()
+        list1=[]
+        list1.append(user.employee.email)
+        print(list1)
         Leave = form.save(commit=False)
         Leave.user = request.user
         Leave.save()
+        send_mail("Task assigned - {0}".format(request.POST.get("task_title")),'You have been '
+                       ' assigned task by {0} \n task link {url}'.format(request.user,url='https://drive.google.com/open?id=' + res.get('id')),
+                  'technical.techanalogy@gmail.com',list1,fail_silently=False)
+
         return redirect('/dashboard')
     else:
         form = TaskAssignForm()
@@ -76,7 +85,9 @@ def task_status(request):
 
 
 def task_submission(request):
+
     if "attachment" in request.FILES:
+        list1=[]
         sumbmission = request.FILES['attachment']
         user = User.objects.get(pk=request.POST.get("user"))
         service = Create_Service()
@@ -87,7 +98,8 @@ def task_submission(request):
             'name': '{0} -{1}'.format(task.task_title, request.user),
             'parents': [folder_id]
         }
-        service.files().create(
+        list1.append(user.employee.email)
+        res=service.files().create(
             body=file_metadata,
             media_body=media
 
@@ -95,6 +107,15 @@ def task_submission(request):
         sumbmission.close()
     task = Task.objects.get(pk=request.POST.get("task"))
     task.close_task()
+    if "attachment" in request.FILES:
+        send_mail("Task submitted- {0}".format(task.task_title), '{0} has  successfully submitted task '
+            '\n submission link {url}'.format(request.user,
+             url='https://drive.google.com/open?id=' + res.get('id')),
+                  'technical.techanalogy@gmail.com', list1, fail_silently=False)
+    else :
+        send_mail("Task submitted- {0}".format(task.task_title), '{0} has  successfully submitted task '
+                .format(request.user),'technical.techanalogy@gmail.com', list1, fail_silently=False)
+
     return redirect('/task/task_status/')
 
 

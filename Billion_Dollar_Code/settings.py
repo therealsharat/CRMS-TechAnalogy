@@ -27,7 +27,7 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 if DEBUG == False:
     ALLOWED_HOSTS = [env('ALLOWED_HOST_1'),'.tech-analogy.engineer',env('ALLOWED_HOST_2')]
 
@@ -148,3 +148,11 @@ MEDIA_URL = 'media/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
+
+EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST_USER= 'technical.techanalogy@gmail.com'
+EMAIL_PORT=587
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_USE_TLS=True
+EMAIL_HOST_PASSWORD = 'Techanalogy@2020'
