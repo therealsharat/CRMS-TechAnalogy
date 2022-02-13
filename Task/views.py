@@ -16,6 +16,8 @@ def task_creation(request):
         username = User.objects.get(pk=request.POST.get("assigned_to")).username
         user=User.objects.get(pk=request.POST.get("assigned_to"))
         folder_id = folder(request)
+        list1 = []
+        list1.append(user.employee.email)
         if 'attachment' in request.FILES:
             service = Create_Service()
             file = request.FILES['attachment']
@@ -30,15 +32,17 @@ def task_creation(request):
 
             ).execute()
             file.close()
-        list1=[]
-        list1.append(user.employee.email)
-        print(list1)
+            send_mail("Task assigned - {0}".format(request.POST.get("task_title")), 'You have been '
+                                                                                    ' assigned task by {0} \n task link {url}'.format(
+                request.user, url='https://drive.google.com/open?id=' + res.get('id')),
+                      'technical.techanalogy@gmail.com', list1, fail_silently=False)
+
         Leave = form.save(commit=False)
         Leave.user = request.user
         Leave.save()
-        send_mail("Task assigned - {0}".format(request.POST.get("task_title")),'You have been '
-                       ' assigned task by {0} \n task link {url}'.format(request.user,url='https://drive.google.com/open?id=' + res.get('id')),
-                  'technical.techanalogy@gmail.com',list1,fail_silently=False)
+        send_mail("Task assigned - {0}".format(request.POST.get("task_title")), 'You have been '
+                                                                                ' assigned task by {0}','technical.techanalogy@gmail.com', list1, fail_silently=False)
+
 
         return redirect('/dashboard')
     else:
